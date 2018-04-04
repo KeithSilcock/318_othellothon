@@ -7,6 +7,9 @@ class GameBoard {
         this.player1=p1;
         this.player2=p2;
 
+        this.p1ScoreBoard = new Scoreboard();
+        this.p2ScoreBoard = new Scoreboard();
+
         this.currentPlayer=this.player1; //obeject of name, color
 
         this.twoDimensionArray = [
@@ -65,9 +68,22 @@ class GameBoard {
             this.spawnPiece(divClicked);
             this.updateStorageArray(squareCoords);
 
+            // this.updateScoreBoard();
+
             this.switchPlayer();
         }
 
+    }
+
+    updateScoreBoard(){
+        var allPiecesOnBoard = this.gameBoard.find('.piece');
+        for(var pieceIndex in allPiecesOnBoard){
+            var piece = $(allPiecesOnBoard[pieceIndex]);
+            debugger
+            if(piece.attr('player') === '1'){
+                console.log('here bro')
+            }
+        }
     }
 
     updateStorageArray(coords){
