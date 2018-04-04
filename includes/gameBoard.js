@@ -151,12 +151,13 @@ class GameBoard {
 
     }
 
+    /*
     flipPieces() {
         var row, col;
         for (var index = row; row < this.size; row++) {
             ('row').find('row' index).css('background-color'
         }
-    }
+    }*/
 
 }
 
