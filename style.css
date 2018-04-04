@@ -7,24 +7,32 @@ body {
     width: 100vw;
 }
 .gameBoard{
-    height: 50%;
-    width: 50%;
+    position: relative;
+    height: 800px;
+    width: 800px;
     margin: auto;
+    background-color: #F0C37D;
+    border-radius: 30px;
+    padding: 1% 1%;
+    box-sizing: border-box;
 }
 .row{
     display: flex;
-    height: 12.5%;
+    height: 9%;
+    margin: 3% 0;
 }
 .square{
-    display: inline-block;
-    height: 100%;
-    width:12.5%;
+    display: inline-flex;
+    justify-content: space-between;
+    margin: auto;
+    height: 90%;
+    width: 8%;
 }
 .light{
-    background-color: lawngreen;
+    background-color: #C38741;
 }
 .dark{
-    background-color: darkred;
+    background-color: #C38741;
 }
 
 
