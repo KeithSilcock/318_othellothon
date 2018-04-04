@@ -41,9 +41,9 @@ class GameBoard{
 
     }
     spawnPiece(divClicked){
-        var newPiece = new Piece();
+        var newPiece = new Piece(this.currentPlayer);
         this.placedPiece = newPiece.renderPiece();
-        newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
+        this.placedPiece = newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
     }
