@@ -1,5 +1,14 @@
+
 class GameBoard {
     constructor() {
+      this.gameBoard=$('.gameBoard');
+        this.size=size;
+        this.placedPiece=null;
+        this.player1=null;
+        this.player2=null;
+
+        this.currentPlayer={name:'dan', 'color':'blue'}; //obeject of name, color
+      
         this.twoDimensionArray = [
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0],
@@ -11,11 +20,11 @@ class GameBoard {
             [0,0,0,0,0,0,0,0]
         ]
         this.createBoard(8);
+      this.attachHandler();
     }
 
     createBoard(size) {
         var boardSize = {rows: size, squares: size};
-        var gameBoard = $('.gameBoard');
         var rowNumber = boardSize.rows;
         for (var rowIndex = 0; rowIndex < rowNumber; rowIndex++) {
             var rowMaker = $("<div>").addClass("row");
@@ -30,18 +39,20 @@ class GameBoard {
                 }
                 rowMaker.append(squareMaker);
             }
-            gameBoard.append(rowMaker);
+            this.gameBoard.append(rowMaker);
         }
 
     }
 
-    attachHandler() {
 
+    attachHandler(){
+        this.gameBoard.on('click', this.clickedBoard.bind(this))
     }
 
-    spawnPiece(divClicked) {
+    clickedBoard(divClicked){
+        this.spawnPiece(divClicked);
 
-    }
+
 
     switchPlayer() {
 
@@ -72,8 +83,18 @@ class GameBoard {
         }
     }
 
+    spawnPiece(divClicked){
+        var newPiece = new Piece(this.currentPlayer);
+        this.placedPiece = newPiece.renderPiece();
+        this.placedPiece = newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
+
+        divClicked.target.append(this.placedPiece[0])
+
+
     checkWest({y:yDirection,x:xDirection}) {
 
+
+        divClicked.target.append(this.placedPiece[0])
     }
 
     checkNorth({y:yDirection,x:xDirection}) {
@@ -103,5 +124,5 @@ class GameBoard {
 }
 
 $(document).ready(function(){
-    var newGame = new GameBoard();
+    var newGame = new GameBoard(8);
 })
