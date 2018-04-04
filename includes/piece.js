@@ -10,8 +10,7 @@ class Piece{
             'class':'piece',
         });
         this.pieceDOM.attr({
-            ownerName: this.owner.name,
-            ownerColor: this.owner.color,
+            player: this.owner.num,
         });
         return this.pieceDOM
     }

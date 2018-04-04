@@ -1,11 +1,11 @@
 
 class GameBoard {
-    constructor(size) {
+    constructor(size, p1, p2) {
         this.gameBoard=$('.gameBoard');
         this.size=size;
         this.placedPiece=null;
-        this.player1=null;
-        this.player2=null;
+        this.player1=p1;
+        this.player2=p2;
 
         this.currentPlayer={name:'dan', 'color':'blue'}; //obeject of name, color
 
