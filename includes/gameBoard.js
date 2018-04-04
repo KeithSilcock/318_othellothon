@@ -61,7 +61,7 @@ class GameBoard {
     clickedBoard(divClicked) {
         var square = $(divClicked.target);
         var squareCoords = {x:square.attr('row'), y:square.attr('column')};
-        if(this.getBoardStatusFromArray(squareCoords) ===0 && square.hasClass('square')) {
+        if(this.getBoardStatusFromArray(squareCoords)===0 && square.hasClass('square')) {
             this.spawnPiece(divClicked);
             this.updateStorageArray(squareCoords);
 
@@ -71,6 +71,7 @@ class GameBoard {
     }
 
     updateStorageArray(coords){
+        console.log(this.twoDimensionArray)
         this.twoDimensionArray[coords.x][coords.y] = this.currentPlayer.getPlayerNum();
     }
 
@@ -113,7 +114,7 @@ class GameBoard {
 
     spawnPiece(divClicked) {
         var newPiece = new Piece(this.currentPlayer);
-        this.placedPiece = newPiece.renderPiece();
+        this.placedPiece = newPiece.renderPiece(divClicked);
         this.placedPiece = newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
