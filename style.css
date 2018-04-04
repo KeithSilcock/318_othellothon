@@ -1,0 +1,24 @@
+.container{
+    height: 100vh;
+    width: 100vw;
+}
+.gameBoard{
+    height: 50%;
+    width: 50%;
+    margin: auto;
+}
+.row{
+    display: flex;
+    height: 12.5%;
+}
+.square{
+    display: inline-block;
+    height: 100%;
+    width:12.5%;
+}
+.light{
+    background-color: lawngreen;
+}
+.dark{
+    background-color: darkred;
+}
