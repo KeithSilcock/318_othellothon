@@ -129,6 +129,6 @@ class GameBoard {
 
 }
 
-$(document).ready(function(){
-    var newGame = new GameBoard(8);
-})
+// $(document).ready(function(){
+//     var newGame = new GameBoard(8);
+// })

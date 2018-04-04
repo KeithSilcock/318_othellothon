@@ -33,15 +33,22 @@ class GameStartView{
         var buttonDiv = $("<div>").addClass("startButton");
         buttonDiv.text("Start Game");
         ruleDiv.append(buttonDiv);
-        buttonDiv.on("click", this.closeRuleScreen);
+        buttonDiv.on("click", this.closeRuleScreen.bind(this));
     }
     closeRuleScreen(){
         $("div").remove(".rules");
+        this.showPlayerSelect();
+    }
+    showPlayerSelect(){
+        $(".gameStartContainer").removeClass("hideThis");
     }
     handleClicks(){
         this.submitButton.on('click',this.playersPressReady.bind(this))
     }
-
+    closePlayerSelect(){
+        $(".gameStartContainer").addClass("hideThis");
+        $("div").remove(".blackScreen");
+    }
     playersPressReady(){
         //make sure text is in input, selected colors
         //go to game page
@@ -55,6 +62,7 @@ class GameStartView{
         this.player2.setColor('red');//do later
 
         this.callback(this.player1, this.player2)
+        this.closePlayerSelect();
     }
 }
 
