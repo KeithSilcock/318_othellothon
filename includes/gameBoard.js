@@ -59,17 +59,25 @@ class GameBoard {
     }
 
     clickedBoard(divClicked) {
-        console.log(this.currentPlayer)
-        this.spawnPiece(divClicked);
-        this.switchPlayer()
+        var square = $(divClicked.target)
+        if(square.hasClass('square')) {
+            this.spawnPiece(divClicked);
+            this.updateStorageArray(square.attr('row'), square.attr('column'));
+
+            this.switchPlayer();
+        }
+
     }
 
+    updateStorageArray(x,y){
+        this.twoDimensionArray[x][y] = this.currentPlayer.getPlayerNum();
+    }
 
     switchPlayer() {
         if (this.currentPlayer.getPlayerNum() === '1') {
-            this.currentPlayer = this.player1;
-        } else {
             this.currentPlayer = this.player2;
+        } else {
+            this.currentPlayer = this.player1;
         }
     }
 
@@ -140,10 +148,8 @@ class GameBoard {
 }
 
 $(document).ready(function(){
-    player1 = {name: 'Harrison', color: ''}
-    // this.name = name;
-    // this.color = color;
-    // this.img = img;
-    // this.num=num;
-    var newGame = new GameBoard(8);
+    var player1 = new Player('Harrison', 'blue', null, '1');
+    var player2 = new Player('Dona', 'white', null, '2');
+
+    var newGame = new GameBoard(8, player1, player2);
 })
