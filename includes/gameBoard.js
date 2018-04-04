@@ -59,18 +59,23 @@ class GameBoard {
     }
 
     clickedBoard(divClicked) {
-        var square = $(divClicked.target)
-        if(square.hasClass('square')) {
+        var square = $(divClicked.target);
+        var squareCoords = {x:square.attr('row'), y:square.attr('column')};
+        if(this.getBoardStatusFromArray(squareCoords) ===0 && square.hasClass('square')) {
             this.spawnPiece(divClicked);
-            this.updateStorageArray(square.attr('row'), square.attr('column'));
+            this.updateStorageArray(squareCoords);
 
             this.switchPlayer();
         }
 
     }
 
-    updateStorageArray(x,y){
-        this.twoDimensionArray[x][y] = this.currentPlayer.getPlayerNum();
+    updateStorageArray(coords){
+        this.twoDimensionArray[coords.x][coords.y] = this.currentPlayer.getPlayerNum();
+    }
+
+    getBoardStatusFromArray(coords){
+        return this.twoDimensionArray[coords.x][coords.y];
     }
 
     switchPlayer() {
