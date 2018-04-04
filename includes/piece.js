@@ -4,6 +4,6 @@ class Piece{
 
     }
     spawnPiece(){
-        this.pieceDOM = $
+        this.pieceDOM = $("<div>")
     }
 }
