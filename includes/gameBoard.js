@@ -1,6 +1,6 @@
 class GameBoard{
     constructor(){
-
+    this.createBoard(8);
     }
     createBoard(size){
         var boardSize = { rows: size, squares: size };
@@ -24,7 +24,6 @@ class GameBoard{
 
     }
 
-}
     attachHandler(){
 
     }
@@ -35,3 +34,6 @@ class GameBoard{
 
     }
 }
+$(document).ready(function(){
+    var newGame = new GameBoard();
+})
