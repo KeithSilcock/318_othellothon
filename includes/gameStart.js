@@ -73,8 +73,14 @@ class GameStartController{
     }
 
     getPlayerObj(p1, p2){
-        console.log(p1, p2);
-        var newGame = new GameBoard(8, p1, p2);
+        // console.log(p1, p2);
+        // var newGame = new GameBoard(8, p1, p2);
+
+        var player1 = new Player('Harrison', 'blue', null, '1');
+        var player2 = new Player('Dona', 'white', null, '2');
+
+        var newGame = new GameBoard(8, player1, player2);
+
     }
 }
 
