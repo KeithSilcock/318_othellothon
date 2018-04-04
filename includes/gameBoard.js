@@ -177,6 +177,15 @@ class GameBoard {
 
     }
 
+    /*
+    flipPieces() {
+        var square = $(divClicked.target);
+        var squareCoords = {x:square.attr('row'), y:square.attr('column')};
+        for (index = squareCoords.x; index < this.size; index++) {
+
+        }
+    }
+    */
 }
 
 
