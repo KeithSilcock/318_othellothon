@@ -1,14 +1,13 @@
 
 class GameBoard {
     constructor(size, p1, p2) {
-        debugger
         this.gameBoard=$('.gameBoard');
         this.size=size;
         this.placedPiece=null;
         this.player1=p1;
         this.player2=p2;
 
-        this.currentPlayer={name:'dan', 'color':'blue'}; //obeject of name, color
+        this.currentPlayer=this.player1; //obeject of name, color
 
         this.twoDimensionArray = [
             [0,0,0,0,0,0,0,0],
@@ -33,8 +32,17 @@ class GameBoard {
                 var squareMaker = $("<div>").addClass('square');
                 if (rowIndex % 2 === 0 && squareIndex % 2 === 0 || rowIndex % 2 === 1 && squareIndex % 2 === 1) {
                     squareMaker.addClass("light");
+                    squareMaker.attr({
+                        'row': rowIndex,
+                        'column': squareIndex,
+                        });
+
                 } else if (rowIndex % 2 === 0 && squareIndex % 2 === 1 || rowIndex % 2 === 1 && squareIndex % 2 === 0) {
                     squareMaker.addClass("dark");
+                    squareMaker.attr({
+                        'row': rowIndex,
+                        'column': squareIndex,
+                    });
                 } else {
                     console.log("GameBoard error");
                 }
@@ -51,15 +59,17 @@ class GameBoard {
     }
 
     clickedBoard(divClicked) {
+        console.log(this.currentPlayer)
         this.spawnPiece(divClicked);
+        this.switchPlayer()
     }
 
 
-    switchPlayer(divClicked) {
+    switchPlayer() {
         if (this.currentPlayer.getPlayerNum() === '1') {
-            this.currentPlayer = p2;
+            this.currentPlayer = this.player1;
         } else {
-            this.currentPlayer = p1;
+            this.currentPlayer = this.player2;
         }
     }
 
@@ -130,5 +140,10 @@ class GameBoard {
 }
 
 $(document).ready(function(){
+    player1 = {name: 'Harrison', color: ''}
+    // this.name = name;
+    // this.color = color;
+    // this.img = img;
+    // this.num=num;
     var newGame = new GameBoard(8);
 })
