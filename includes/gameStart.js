@@ -48,7 +48,7 @@ class GameStartController{
         this._model = new GameStartModel();
         this._view = new GameStartView(this.getPlayerNames);
 
-    }
+}
 
     getPlayerNames(name1, name2){
         console.log(name1, name2)

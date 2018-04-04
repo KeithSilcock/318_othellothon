@@ -27,6 +27,7 @@ body {
     background-color: darkred;
 }
 
+
 /* header */
 .header {
     background-color: black;
@@ -40,4 +41,10 @@ body {
     height: 80%;
     width: 25%;
     background-color: blue;
+
+.piece{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
