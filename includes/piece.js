@@ -12,16 +12,17 @@ class Piece{
         return this.pieceDOM
     }
 
-    changeColor(colorToBe, imageToBe){
+    changeColor(piece, colorToBe, imageToBe){
+        // debugger
         if(!colorToBe){
-            this.pieceDOM.css({
+            piece.css({
                 'background-img': imageToBe,
             });
         }else {
-            this.pieceDOM.css({
+            piece.css({
                 'background-color': colorToBe,
             });
         }
-        return this.pieceDOM
+        return piece.pieceDOM
     }
 }

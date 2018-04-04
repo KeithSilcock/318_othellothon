@@ -1,10 +1,18 @@
 class GameBoard{
-    constructor(){
-    this.createBoard(8);
+    constructor(size){
+        this.gameBoard=$('.gameBoard');
+        this.size=size;
+        this.placedPiece=null;
+        this.player1=null;
+        this.player2=null;
+
+        this.currentPlayer={name:'dan', 'color':'blue'}; //obeject of name, color
+        this.createBoard(this.size);
+
+        this.attachHandler();
     }
     createBoard(size){
         var boardSize = { rows: size, squares: size };
-        var gameBoard = $('.gameBoard');
         var rowNumber = boardSize.rows;
         for (var rowIndex= 0; rowIndex < rowNumber; rowIndex++){
             var rowMaker = $("<div>").addClass("row");
@@ -19,21 +27,30 @@ class GameBoard{
                 }
                 rowMaker.append(squareMaker);
             }
-            gameBoard.append(rowMaker);
+            this.gameBoard.append(rowMaker);
         }
 
     }
 
     attachHandler(){
+        this.gameBoard.on('click', this.clickedBoard.bind(this))
+    }
+
+    clickedBoard(divClicked){
+        this.spawnPiece(divClicked);
 
     }
     spawnPiece(divClicked){
+        var newPiece = new Piece();
+        this.placedPiece = newPiece.renderPiece();
+        newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
 
+        divClicked.target.append(this.placedPiece[0])
     }
     switchPlayer(){
 
     }
 }
 $(document).ready(function(){
-    var newGame = new GameBoard();
+    var newGame = new GameBoard(8);
 })
