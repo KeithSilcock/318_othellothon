@@ -169,12 +169,13 @@ class GameBoard {
 
     /*
     flipPieces() {
-        var row, col;
-        for (var index = row; row < this.size; row++) {
-            ('row').find('row' index).css('background-color'
-        }
-    }*/
+        var square = $(divClicked.target);
+        var squareCoords = {x:square.attr('row'), y:square.attr('column')};
+        for (index = squareCoords.x; index < this.size; index++) {
 
+        }
+    }
+    */
 }
 
 $(document).ready(function(){
