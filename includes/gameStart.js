@@ -6,6 +6,7 @@ class GameStartModel{
 
 class GameStartView{
     constructor(setPlayerNamesCallback){
+        this.createBlackScreen();
         this.p1Input = $('.p1Input');
         this.p2Input = $('.p2Input');
 
@@ -22,6 +23,17 @@ class GameStartView{
         this.handleClicks();
         this.player1 = new Player(this.player1Name, this.player1Color, null, 1);
         this.player2 = new Player(this.player2Name, this.player2Color, null, 2);
+    }
+    createBlackScreen(){
+        var blackScreenDiv = $("<div>").addClass("blackScreen");
+        $("body").prepend(blackScreenDiv);
+        var ruleDiv = $("<div>").addClass("rules");
+        blackScreenDiv.append(ruleDiv);
+        var buttonDiv = $("<div>").addClass("startButton");
+        blackScreenDiv.append(buttonDiv);
+        // var blackScreenImg = $("<img>").addClass("popupImg").attr("src", imageUrl);
+        // blackScreenDiv.append(blackScreenImg);
+        blackScreenDiv.on("click", removeBlackScreen);
     }
 
     handleClicks(){
