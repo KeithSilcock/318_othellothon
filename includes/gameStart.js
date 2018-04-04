@@ -6,6 +6,7 @@ class GameStartModel{
 
 class GameStartView{
     constructor(setPlayerNamesCallback){
+        this.createStartScreen();
         this.p1Input = $('.p1Input');
         this.p2Input = $('.p2Input');
 
@@ -23,11 +24,31 @@ class GameStartView{
         this.player1 = new Player(this.player1Name, this.player1Color, null, 1);
         this.player2 = new Player(this.player2Name, this.player2Color, null, 2);
     }
-
+    createStartScreen(){
+        var blackScreenDiv = $("<div>").addClass("blackScreen");
+        $(".container").prepend(blackScreenDiv);
+        var ruleDiv = $("<div>").addClass("rules");
+        ruleDiv.text("Rule:")
+        blackScreenDiv.append(ruleDiv);
+        var buttonDiv = $("<div>").addClass("startButton");
+        buttonDiv.text("Start Game");
+        ruleDiv.append(buttonDiv);
+        buttonDiv.on("click", this.closeRuleScreen.bind(this));
+    }
+    closeRuleScreen(){
+        $("div").remove(".rules");
+        this.showPlayerSelect();
+    }
+    showPlayerSelect(){
+        $(".gameStartContainer").removeClass("hideThis");
+    }
     handleClicks(){
         this.submitButton.on('click',this.playersPressReady.bind(this))
     }
-
+    closePlayerSelect(){
+        $(".gameStartContainer").addClass("hideThis");
+        $("div").remove(".blackScreen");
+    }
     playersPressReady(){
         //make sure text is in input, selected colors
         //go to game page
@@ -41,6 +62,7 @@ class GameStartView{
         this.player2.setColor('red');//do later
 
         this.callback(this.player1, this.player2)
+        this.closePlayerSelect();
     }
 }
 

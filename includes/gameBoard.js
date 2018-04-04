@@ -169,9 +169,11 @@ class GameBoard {
 
 }
 
-$(document).ready(function(){
-    var player1 = new Player('Harrison', 'blue', null, '1');
-    var player2 = new Player('Dona', 'white', null, '2');
 
-    var newGame = new GameBoard(8, player1, player2);
-})
+// $(document).ready(function(){
+//     var player1 = new Player('Harrison', 'blue', null, '1');
+//     var player2 = new Player('Dona', 'white', null, '2');
+
+//     var newGame = new GameBoard(8, player1, player2);
+// })
+

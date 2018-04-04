@@ -3,13 +3,15 @@ body {
 }
 
 .container{
+    position: relative;
     height: 100vh;
     width: 100vw;
 }
 .gameBoard{
+    display: inline-block;
     position: relative;
-    height: 800px;
-    width: 800px;
+    height: 500px;
+    width: 500px;
     margin: auto;
     background-color: #F0C37D;
     border-radius: 30px;
@@ -34,7 +36,51 @@ body {
 .dark{
     background-color: #C38741;
 }
+.blackScreen{
+    position:absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5%;
+    z-index: +1;
+    box-sizing: border-box;
+}
+.rules{
+    background-color: whitesmoke;
+    border-radius: 30px;
+    height:80%;
+    width:80%;
+    z-index: +2;
+    margin: auto;
+    vertical-align: center;
+    text-align: center;
 
+}
+.startButton{
+    background-color: cornflowerblue;
+    height:10%;
+    width:10%;
+    z-index: +3;
+    margin: auto;
+}
+
+.gameStartContainer{
+    position:absolute;
+    top:10%;
+    left: 10%;
+    z-index: +2;
+    background-color: whitesmoke;
+    border-radius: 30px;
+    height:80%;
+    width:80%;
+}
+.p1Start, p2Start{
+    display: inline-block;
+}
+
+.hideThis{
+    display: none;
+}
 
 /* header */
 .header {
@@ -43,12 +89,13 @@ body {
     width: 100%;
 }
 
-.player1 playerContainer {
+.playerContainer {
+    vertical-align: top;
     position: relative;
     display: inline-block;
     height: 80%;
     width: 25%;
-    background-color: blue;
+    background-color: powderblue;
 }
 
 .piece{
