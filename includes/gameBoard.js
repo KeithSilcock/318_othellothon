@@ -1,14 +1,16 @@
 
 class GameBoard {
     constructor(size, p1, p2) {
-        debugger
         this.gameBoard=$('.gameBoard');
         this.size=size;
         this.placedPiece=null;
         this.player1=p1;
         this.player2=p2;
 
-        this.currentPlayer={name:'dan', 'color':'blue'}; //obeject of name, color
+        this.p1ScoreBoard = new Scoreboard();
+        this.p2ScoreBoard = new Scoreboard();
+
+        this.currentPlayer=this.player1; //obeject of name, color
 
         this.twoDimensionArray = [
             [0,0,0,0,0,0,0,0],
@@ -33,8 +35,17 @@ class GameBoard {
                 var squareMaker = $("<div>").addClass('square');
                 if (rowIndex % 2 === 0 && squareIndex % 2 === 0 || rowIndex % 2 === 1 && squareIndex % 2 === 1) {
                     squareMaker.addClass("light");
+                    squareMaker.attr({
+                        'row': rowIndex,
+                        'column': squareIndex,
+                        });
+
                 } else if (rowIndex % 2 === 0 && squareIndex % 2 === 1 || rowIndex % 2 === 1 && squareIndex % 2 === 0) {
                     squareMaker.addClass("dark");
+                    squareMaker.attr({
+                        'row': rowIndex,
+                        'column': squareIndex,
+                    });
                 } else {
                     console.log("GameBoard error");
                 }
@@ -51,15 +62,44 @@ class GameBoard {
     }
 
     clickedBoard(divClicked) {
-        this.spawnPiece(divClicked);
+        var square = $(divClicked.target);
+        var squareCoords = {x:square.attr('row'), y:square.attr('column')};
+        if(this.getBoardStatusFromArray(squareCoords)===0 && square.hasClass('square')) {
+            this.spawnPiece(divClicked);
+            this.updateStorageArray(squareCoords);
+
+            // this.updateScoreBoard();
+
+            this.switchPlayer();
+        }
+
     }
 
+    updateScoreBoard(){
+        var allPiecesOnBoard = this.gameBoard.find('.piece');
+        for(var pieceIndex in allPiecesOnBoard){
+            var piece = $(allPiecesOnBoard[pieceIndex]);
+            debugger
+            if(piece.attr('player') === '1'){
+                console.log('here bro')
+            }
+        }
+    }
 
-    switchPlayer(divClicked) {
+    updateStorageArray(coords){
+        console.log(this.twoDimensionArray)
+        this.twoDimensionArray[coords.x][coords.y] = this.currentPlayer.getPlayerNum();
+    }
+
+    getBoardStatusFromArray(coords){
+        return this.twoDimensionArray[coords.x][coords.y];
+    }
+
+    switchPlayer() {
         if (this.currentPlayer.getPlayerNum() === '1') {
-            this.currentPlayer = p2;
+            this.currentPlayer = this.player2;
         } else {
-            this.currentPlayer = p1;
+            this.currentPlayer = this.player1;
         }
     }
 
@@ -90,7 +130,7 @@ class GameBoard {
 
     spawnPiece(divClicked) {
         var newPiece = new Piece(this.currentPlayer);
-        this.placedPiece = newPiece.renderPiece();
+        this.placedPiece = newPiece.renderPiece(divClicked);
         this.placedPiece = newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
@@ -129,6 +169,11 @@ class GameBoard {
 
 }
 
+
 // $(document).ready(function(){
-//     var newGame = new GameBoard(8);
+//     var player1 = new Player('Harrison', 'blue', null, '1');
+//     var player2 = new Player('Dona', 'white', null, '2');
+
+//     var newGame = new GameBoard(8, player1, player2);
 // })
+
