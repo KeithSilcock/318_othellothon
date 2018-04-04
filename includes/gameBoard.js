@@ -1,14 +1,14 @@
 
 class GameBoard {
-    constructor() {
-      this.gameBoard=$('.gameBoard');
+    constructor(size) {
+        this.gameBoard=$('.gameBoard');
         this.size=size;
         this.placedPiece=null;
         this.player1=null;
         this.player2=null;
 
         this.currentPlayer={name:'dan', 'color':'blue'}; //obeject of name, color
-      
+
         this.twoDimensionArray = [
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0],
@@ -18,9 +18,9 @@ class GameBoard {
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0]
-        ]
-        this.createBoard(8);
-      this.attachHandler();
+        ];
+        this.createBoard(this.size);
+        this.attachHandler();
     }
 
     createBoard(size) {
@@ -49,12 +49,12 @@ class GameBoard {
         this.gameBoard.on('click', this.clickedBoard.bind(this))
     }
 
-    clickedBoard(divClicked){
+    clickedBoard(divClicked) {
         this.spawnPiece(divClicked);
+    }
 
 
-
-    switchPlayer() {
+    switchPlayer(){
 
     }
 
@@ -67,29 +67,30 @@ class GameBoard {
         for(var rowIndex = x; rowIndex < size; rowIndex++){
             if(arrayForCheck[y][rowIndex] === 0) {
                 console.log("empty on east");
-                else{
-                    if (arrayForCheck[y][rowIndex] === currentNum) {
-                        if (piecesToFlip.length !== 0) {
-                            //call flipColor Function
-                            //flip color on the board and numbers in the twoDimensionArray
-                        } else {
-                            console.log("Nothing to Flip");
-                        }
+            }else{
+                if (arrayForCheck[y][rowIndex] === currentNum) {
+                    if (piecesToFlip.length !== 0) {
+                        //call flipColor Function
+                        //flip color on the board and numbers in the twoDimensionArray
                     } else {
-                        piecesToFlip.push({yCord:y, xCord:rowIndex})
+                        console.log("Nothing to Flip");
                     }
+                } else {
+                    piecesToFlip.push({yCord:y, xCord:rowIndex})
                 }
             }
         }
     }
 
-    spawnPiece(divClicked){
+
+    spawnPiece(divClicked) {
         var newPiece = new Piece(this.currentPlayer);
         this.placedPiece = newPiece.renderPiece();
         this.placedPiece = newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
 
+    }
 
     checkWest({y:yDirection,x:xDirection}) {
 
