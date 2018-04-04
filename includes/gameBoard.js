@@ -55,8 +55,12 @@ class GameBoard {
     }
 
 
-    switchPlayer(){
-
+    switchPlayer(divClicked) {
+        if (this.currentPlayer.getPlayerNum() === '1') {
+            this.currentPlayer = p2;
+        } else {
+            this.currentPlayer = p1;
+        }
     }
 
     checkEast(arrayForCheck,currentPlayer,opponent,yDirection,xDirection) {
