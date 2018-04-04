@@ -5,7 +5,7 @@ class GameStartModel{
 }
 
 class GameStartView{
-    constructor(setPlayerNames){
+    constructor(setPlayerNamesCallback){
         this.p1Input = $('.p1Input');
         this.p2Input = $('.p2Input');
 
@@ -17,7 +17,7 @@ class GameStartView{
         this.player2Name=null;
         this.player2Color=null;
 
-        this.callback = setPlayerNames;
+        this.callback = setPlayerNamesCallback;
 
         this.handleClicks();
         this.player1 = new Player(this.player1Name, this.player1Color, null, 1);
@@ -48,11 +48,11 @@ class GameStartController{
     constructor(){
         this._model = new GameStartModel();
         this._view = new GameStartView(this.getPlayerObj);
-
-}
+    }
 
     getPlayerObj(p1, p2){
-        console.log(p1, p2)
+        console.log(p1, p2);
+        var newGame = new GameBoard(8, p1, p2);
     }
 }
 

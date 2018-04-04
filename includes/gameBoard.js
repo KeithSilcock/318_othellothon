@@ -1,6 +1,7 @@
 
 class GameBoard {
     constructor(size, p1, p2) {
+        debugger
         this.gameBoard=$('.gameBoard');
         this.size=size;
         this.placedPiece=null;
