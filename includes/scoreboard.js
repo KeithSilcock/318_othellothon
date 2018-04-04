@@ -1,37 +1,30 @@
 class Scoreboard {
-    constructor () {
-
+    constructor (size) {
+        this._p1Score=0;
+        this._movesLeft= size*size;
     }
 
     displayTimer() {
 
     }
 
-    addToScore(amount) {
-        this.score += amount;
+    get score(){
+        return this._score;
+    }
+    set p1Score(score){
+        this._score=score;
     }
 
-    removeFromScore(amount) {
-        this.score -= amount
-    }
-
-    setScore(amount) {
-        this.score = amount;
-    }
-
-    getScore() {
-        return this.score;
+    get attemptsLeft(){
+        return this._movesLeft - this._score-this.p2Score;
     }
 
     displayScore() {
 
     }
 
-    attempsLeft() {
-
-    }
-
     reset() {
-        this.score = 0;
+        this._p1Score = 0;
+        this._p2Score = 0;
     }
 }

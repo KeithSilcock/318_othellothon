@@ -7,8 +7,8 @@ class GameBoard {
         this.player1=p1;
         this.player2=p2;
 
-        this.p1ScoreBoard = new Scoreboard();
-        this.p2ScoreBoard = new Scoreboard();
+        this.p1ScoreBoard = new Scoreboard(size);
+        this.p2ScoreBoard = new Scoreboard(size);
 
         this.currentPlayer=this.player1; //obeject of name, color
 
@@ -64,6 +64,7 @@ class GameBoard {
     clickedBoard(divClicked) {
         var square = $(divClicked.target);
         var squareCoords = {x:square.attr('row'), y:square.attr('column')};
+        //check if empty and is a square
         if(this.getBoardStatusFromArray(squareCoords)===0 && square.hasClass('square')) {
             this.spawnPiece(divClicked);
             this.updateStorageArray(squareCoords);
@@ -77,13 +78,22 @@ class GameBoard {
 
     updateScoreBoard(){
         var allPiecesOnBoard = this.gameBoard.find('.piece');
-        for(var pieceIndex in allPiecesOnBoard){
+        var count1 = 0;
+        var count2 = 0;
+        for(var pieceIndex=0; pieceIndex<allPiecesOnBoard.length; pieceIndex++){
             var piece = $(allPiecesOnBoard[pieceIndex]);
-            debugger
+
+            //count how many for each player, send to scoreBoard
             if(piece.attr('player') === '1'){
-                console.log('here bro')
+                count1++;
+            }else if(piece.attr('player') === '2'){
+                count2++;
             }
+            //set the counts to scoreboard
+            this.p1ScoreBoard.score=count1;
+            this.p2ScoreBoard.score=count2;
         }
+        console.log(this.p1ScoreBoard.attemptsLeft)
     }
 
     updateStorageArray(coords){
