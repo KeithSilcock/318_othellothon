@@ -9,8 +9,7 @@ class Piece{
         var squareClicked = $(divClicked.target)
         this.pieceDOM = $("<div>",{
             'class':'piece',
-            'row': squareClicked.attr('row'),
-            'column': squareClicked.attr('column'),
+            'coord': squareClicked.attr('coord'),
         });
         this.pieceDOM.attr({
             player: this.owner.num,

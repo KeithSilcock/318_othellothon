@@ -36,15 +36,13 @@ class GameBoard {
                 if (rowIndex % 2 === 0 && squareIndex % 2 === 0 || rowIndex % 2 === 1 && squareIndex % 2 === 1) {
                     squareMaker.addClass("light");
                     squareMaker.attr({
-                        'row': rowIndex,
-                        'column': squareIndex,
+                        'coord': ""+rowIndex+squareIndex
                         });
 
                 } else if (rowIndex % 2 === 0 && squareIndex % 2 === 1 || rowIndex % 2 === 1 && squareIndex % 2 === 0) {
                     squareMaker.addClass("dark");
                     squareMaker.attr({
-                        'row': rowIndex,
-                        'column': squareIndex,
+                        'coord': ""+rowIndex+squareIndex
                     });
                 } else {
                     console.log("GameBoard error");
@@ -63,9 +61,10 @@ class GameBoard {
 
     clickedBoard(divClicked) {
         var square = $(divClicked.target);
-        var squareCoords = {x:square.attr('row'), y:square.attr('column')};
+        var squareCoords = square.attr('coord');
+
         //check if empty and is a square
-        if(this.getBoardStatusFromArray(squareCoords)===0 && square.hasClass('square')) {
+        if(this.getPlayerNumberFromArray(squareCoords)===0 && square.hasClass('square')) {
             this.spawnPiece(divClicked);
             this.updateStorageArray(squareCoords);
 
@@ -98,12 +97,14 @@ class GameBoard {
 
     updateStorageArray(coords){
         console.log(this.twoDimensionArray)
-        this.twoDimensionArray[coords.x][coords.y] = this.currentPlayer.getPlayerNum();
+        this.twoDimensionArray[coords[0]][coords[1]] = this.currentPlayer.getPlayerNum();
     }
 
-    getBoardStatusFromArray(coords){
-        return this.twoDimensionArray[coords.x][coords.y];
+    getPlayerNumberFromArray(coords){
+        return this.twoDimensionArray[coords[0]][coords[1]];
     }
+
+
 
     switchPlayer() {
         if (this.currentPlayer.getPlayerNum() === '1') {
