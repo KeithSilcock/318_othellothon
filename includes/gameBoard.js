@@ -67,9 +67,9 @@ class GameBoard {
 
     switchPlayer() {
         if (this.currentPlayer.getPlayerNum() === '1') {
-            this.currentPlayer = this.player1;
-        } else {
             this.currentPlayer = this.player2;
+        } else {
+            this.currentPlayer = this.player1;
         }
     }
 
@@ -135,6 +135,13 @@ class GameBoard {
 
     checkSouthWest({y:yDirection,x:xDirection}){
 
+    }
+
+    flipPieces() {
+        var row, col;
+        for (var index = row; row < this.size; row++) {
+            ('row').find('row' index).css('background-color'
+        }
     }
 
 }
