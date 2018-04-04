@@ -8,15 +8,20 @@ class Piece{
         this.pieceDOM = $("<div>",{
             'class':'piece',
 
-        })
-
+        });
         return this.pieceDOM
     }
 
-    changeColor(colorToBe){
-        this.pieceDOM.css({
-            'background-color': colorToBe,
-        });
+    changeColor(colorToBe, imageToBe){
+        if(!colorToBe){
+            this.pieceDOM.css({
+                'background-img': imageToBe,
+            });
+        }else {
+            this.pieceDOM.css({
+                'background-color': colorToBe,
+            });
+        }
         return this.pieceDOM
     }
 }
