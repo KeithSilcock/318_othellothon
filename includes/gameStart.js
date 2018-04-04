@@ -55,6 +55,31 @@ class GameStartController{
     }
 }
 
+class Player {
+    constructor(name, color, img) {
+        this.name = name;
+        this.color = color;
+        this.img = img;
+    }
+
+    setName(name) {
+        this.name = name;
+    }
+
+    getName(name) {
+        return this.name;
+    }
+
+    setColor(color) {
+        this.color = color;
+    }
+
+    getColor(color) {
+        return this.color;
+    }
+
+}
+
 $(document).ready(function () {
     var newGame = new GameStartController();
 });
