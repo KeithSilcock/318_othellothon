@@ -20,6 +20,8 @@ class GameStartView{
         this.callback = setPlayerNames;
 
         this.handleClicks();
+        this.player1 = new Player(this.player1Name, this.player1Color, null, 1);
+        this.player2 = new Player(this.player2Name, this.player2Color, null, 2);
     }
 
     handleClicks(){
@@ -29,37 +31,37 @@ class GameStartView{
     playersPressReady(){
         //make sure text is in input, selected colors
         //go to game page
-        this.player1Name = this.p1Input.val();
-        this.player2Name = this.p2Input.val();
-
         if(this.player1Name==='' || this.player2Name===''){
             alert('You need to enter a valid name')
         }
+        this.player1.setName(this.p1Input.val());
+        this.player2.setName(this.p2Input.val());
 
-        this.player1Color = null;
-        this.player2Color = null;
+        this.player1.setColor('blue');//do later
+        this.player2.setColor('red');//do later
 
-        this.callback(this.player1Name, this.player2Name)
+        this.callback(this.player1, this.player2)
     }
 }
 
 class GameStartController{
     constructor(){
         this._model = new GameStartModel();
-        this._view = new GameStartView(this.getPlayerNames);
+        this._view = new GameStartView(this.getPlayerObj);
 
 }
 
-    getPlayerNames(name1, name2){
-        console.log(name1, name2)
+    getPlayerObj(p1, p2){
+        console.log(p1, p2)
     }
 }
 
 class Player {
-    constructor(name, color, img) {
+    constructor(name, color, img, num) {
         this.name = name;
         this.color = color;
         this.img = img;
+        this.num=num;
     }
 
     setName(name) {
@@ -76,6 +78,9 @@ class Player {
 
     getColor(color) {
         return this.color;
+    }
+    getPlayerNum(){
+        return this.num;
     }
 
 }
