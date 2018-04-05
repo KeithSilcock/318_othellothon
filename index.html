@@ -22,7 +22,7 @@
 
         <div class="p1Start">
             <p>Enter your name: </p>
-            <input type="text" class="p1 p1Input playerInput">
+            <input type="text" class="p1 p1Input playerInput" value="Player1">
             <p class="colorPickerText p1ColorPickerText">Pick your color</p>
         </div>
         <div class="colorContainer p1 p1colorContainer">
@@ -35,7 +35,7 @@
 
         <div class="p2Start">
             <p>Enter your name: </p>
-            <input type="text" class="p2 p2Input playerInput">
+            <input type="text" class="p2 p2Input playerInput" value="Player2">
             <p class="colorPickerText p2ColorPickerText">Pick your color</p>
         </div>
         <div class="colorContainer p2 p2colorContainer">
@@ -88,6 +88,19 @@
     </div>
 
 </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+        <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blurredBlobs" />
+            <feColorMatrix in="blurredBlobs" mode="matrix" values="1 0 0 0 0
+              0 1 0 0 0
+              0 0 1 0 0
+              0 0 0 20 -10" result="contrastedBlobs" />
+            <feComposite in="SourceGraphic" in2="contrastedBlobs" operator="atop"/>
+        </filter>
+    </defs>
+</svg>
 
 </body>
 </html>

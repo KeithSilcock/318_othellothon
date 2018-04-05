@@ -10,6 +10,9 @@ class GameBoard {
         this.currentPlayer=this.player1;
         this.otherPlayer=this.player2;
 
+        this.player1.setLoseFunction(this.loseGamefunction.bind(this));
+        this.player2.setLoseFunction(this.loseGamefunction.bind(this));
+
         this.twoDimensionArray = [
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0],
@@ -27,6 +30,15 @@ class GameBoard {
         this.player2.displayPlayerStats();
     }
 
+    loseGamefunction(winner){
+        console.log('lost')
+        this.reset();
+        var winPlayer=winner;
+
+    }
+    reset(){
+
+    }
     createBoard(size) {
         var boardSize = {rows: size, squares: size};
         var rowNumber = boardSize.rows;
@@ -100,6 +112,8 @@ class GameBoard {
         }
         this.player1.score=count1;
         this.player2.score=count2;
+        this.player1.movesLeft=(this.size*this.size)-count1;
+        this.player2.movesLeft=(this.size*this.size)-count2;
         this.currentPlayer.displayPlayerStats();
         this.otherPlayer.displayPlayerStats();
 
@@ -136,6 +150,7 @@ class GameBoard {
         this.placedPiece = newPiece.changeColor(this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
+
     }
 
     callChecks(){
