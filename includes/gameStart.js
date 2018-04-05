@@ -91,7 +91,6 @@ class GameStartView{
 
 class GameStartController{
     constructor(){
-        this._model = new GameStartModel();
         this._view = new GameStartView(this.getPlayerObj);
     }
 
