@@ -5,8 +5,10 @@ class Piece{
 
         // return this.renderPiece();
     }
-    renderPiece(divClicked){
-        var squareClicked = $(divClicked.target)
+    renderPiece(squareClicked){
+        //var squareClicked = $(divClicked.target)
+
+
         this.pieceDOM = $("<div>",{
             'class':'piece',
             'coord': squareClicked.attr('coord'),
@@ -17,17 +19,17 @@ class Piece{
         return this.pieceDOM
     }
 
-    changeColor(piece, colorToBe, imageToBe){
+    changeColor(colorToBe, imageToBe){
         // debugger
         if(!colorToBe){
-            piece.css({
+            this.pieceDOM.css({
                 'background-img': imageToBe,
             });
         }else {
-            piece.css({
+            this.pieceDOM.css({
                 'background-color': colorToBe,
             });
         }
-        return piece
+        return this.pieceDOM;
     }
 }

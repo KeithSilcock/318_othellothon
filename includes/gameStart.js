@@ -63,6 +63,36 @@ class GameStartView{
 
         this.callback(this.player1, this.player2)
         this.closePlayerSelect();
+        this.spawnStartPieces();
+    }
+    spawnStartPieces(){
+        debugger;
+        var position33 = $("div[coord= '33']");
+        var position34 = $("div[coord= '34']");
+        var position43 = $("div[coord= '43']");
+        var position44 = $("div[coord= '44']");
+
+        var newPieceC33 = new Piece(this.player1);
+        var placedPieceforC33 = newPieceC33.renderPiece(position33);
+        newPieceC33.changeColor(this.player1.color);
+
+        var newPieceC44 = new Piece(this.player1);
+        var placedPieceforC44 = newPieceC44.renderPiece(position44);
+        newPieceC44.changeColor(this.player1.color);
+
+        position33.append(placedPieceforC33);
+        position44.append(placedPieceforC44);
+
+        var newPieceC34 = new Piece(this.player2);
+        var placedPieceforC34 = newPieceC34.renderPiece(position34);
+        newPieceC34.changeColor(this.player2.color);
+
+        var newPieceC43 = new Piece(this.player2);
+        var placedPieceforC43 = newPieceC43.renderPiece(position43);
+        newPieceC43.changeColor(this.player2.color);
+
+        position34.append(placedPieceforC34);
+        position43.append(placedPieceforC43);
     }
 }
 

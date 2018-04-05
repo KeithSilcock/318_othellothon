@@ -141,7 +141,8 @@ class GameBoard {
 
     spawnPiece(divClicked) {
         var newPiece = new Piece(this.currentPlayer);
-        this.placedPiece = newPiece.renderPiece(divClicked);
+        var squareClicked = divClicked.target;
+        this.placedPiece = newPiece.renderPiece(squareClicked);
         this.placedPiece = newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
