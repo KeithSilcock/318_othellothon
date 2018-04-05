@@ -58,6 +58,9 @@ class Player {
     get num(){
         return this._num;
     }
+    getPlayerNum(){
+        return this._num;
+    }
 
     getPlayerNum(){
         return this._num;
@@ -69,6 +72,13 @@ class Player {
     }
     set score(newScore){
         this._score=newScore;
+    }
+
+    displayPlayerStats() {
+        $('.playerName').text(this.name);
+        $('.playerScore').text(this._score);
+        $('.playerPlaysLeft').text('movesLeft');
+        $('.playerTimer').text(this.currentTime);
     }
 
 }
