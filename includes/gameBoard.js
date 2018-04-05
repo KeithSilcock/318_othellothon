@@ -51,7 +51,6 @@ class GameBoard {
 
     }
 
-
     attachHandler(){
         this.gameBoard.on('click', this.clickedBoard.bind(this))
     }
@@ -67,7 +66,7 @@ class GameBoard {
             this.spawnPiece(divClicked);
             this.updateStorageArray(squareCoords);
 
-            // this.updateScoreBoard();
+            // this.updatePlayerScore();
 
             this.switchPlayer();
             this.currentPlayer.startTimer();
@@ -75,23 +74,23 @@ class GameBoard {
 
     }
 
-    updateScoreBoard(){
-        var allPiecesOnBoard = this.gameBoard.find('.piece');
-        var count1 = 0;
-        var count2 = 0;
-        for(var pieceIndex=0; pieceIndex<allPiecesOnBoard.length; pieceIndex++){
-            var piece = $(allPiecesOnBoard[pieceIndex]);
-
-            //count how many for each player, send to scoreBoard
-            if(piece.attr('player') === '1'){
-                count1++;
-            }else if(piece.attr('player') === '2'){
-                count2++;
-            }
-
-        }
-        console.log(this.p1ScoreBoard.attemptsLeft)
-    }
+    // updatePlayerScore(){
+    //     var allPiecesOnBoard = this.gameBoard.find('.piece');
+    //     var count1 = 0;
+    //     var count2 = 0;
+    //     for(var pieceIndex=0; pieceIndex<allPiecesOnBoard.length; pieceIndex++){
+    //         var piece = $(allPiecesOnBoard[pieceIndex]);
+    //
+    //         //count how many for each player, send to scoreBoard
+    //         if(piece.attr('player') === '1'){
+    //             count1++;
+    //         }else if(piece.attr('player') === '2'){
+    //             count2++;
+    //         }
+    //
+    //     }
+    //     console.log(this.p1ScoreBoard.attemptsLeft)
+    // }
 
     updateStorageArray(coords){
         console.log(this.twoDimensionArray)
@@ -101,8 +100,6 @@ class GameBoard {
     getPlayerNumberFromArray(coords){
         return this.twoDimensionArray[coords[0]][coords[1]];
     }
-
-
 
     switchPlayer() {
         if (this.currentPlayer.getPlayerNum() === '1') {

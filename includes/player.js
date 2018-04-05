@@ -3,7 +3,7 @@ class Player {
         this.name = name;
         this.color = color;
         this.img = img;
-        this.num=num;
+        this._num=num;
 
         this._score=0;
 
@@ -55,8 +55,8 @@ class Player {
         return this.color;
     }
 
-    getPlayerNum(){
-        return this.num;
+    get num(){
+        return this._num;
     }
 
     get score(){
