@@ -54,7 +54,6 @@ body {
     margin: auto;
     vertical-align: center;
     text-align: center;
-
 }
 .startButton{
     background-color: cornflowerblue;
@@ -73,9 +72,6 @@ body {
     border-radius: 30px;
     height:80%;
     width:80%;
-}
-.p1Start, p2Start{
-    display: inline-block;
 }
 
 .hideThis{
@@ -136,4 +132,61 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+}
+
+.p1Start, .p2Start{
+    position: absolute;
+}
+.p1Start{
+    left:13%;
+    top: 20%;
+}
+.p2Start{
+    left:55%;
+    top: 20%;
+}
+.p1colorContainer{
+    position: absolute;
+    width: 40%;
+    height: 10%;
+    top: 40%;
+    left: 7%;
+}
+.p2colorContainer{
+    position: absolute;
+    width: 40%;
+    height: 10%;
+    top: 40%;
+    left: 50%;
+}
+.colorChoice{
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 20%;
+    height: 100%;
+}
+.colorChoice:hover{
+    border: 2px solid black;
+}
+.colorChoice:active{
+    border: 2px solid black;
+}
+.color1{
+    background-color: #009fd7;
+}
+.color2{
+    background-color: #b65824;
+}
+.color3{
+    background-color: red;
+}
+.color4{
+    background-color: orange;
+}
+.submitCharacters{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, 0);
 }

@@ -30,7 +30,7 @@ class Player {
 
     countDown(){
         this.displayPlayerStats();
-        if(--this.currentTime > 0){
+        if(--this.currentTime >= 0){
             console.log(this.currentTime)
         }else{
             //time ran out
@@ -52,14 +52,14 @@ class Player {
     setName(name) {
         this.name = name;
     }
-    getName(name) {
+    getName() {
         return this.name;
     }
 
     setColor(color) {
         this.color = color;
     }
-    getColor(color) {
+    getColor() {
         return this.color;
     }
 
