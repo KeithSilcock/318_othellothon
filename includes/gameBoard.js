@@ -63,7 +63,6 @@ class GameBoard {
     }
 
     createGameEndScreen(playerWhoWon) {
-        debugger
         playerWhoWon=playerWhoWon.toLowerCase();
         var blackScreenDiv = $("<div>").addClass("blackScreen");
         $(".container").prepend(blackScreenDiv);
