@@ -65,7 +65,7 @@ class GameBoard {
 
             this.spawnPiece(divClicked);
             this.updateStorageArray(this.lastSquareCoords);
-            debugger;
+
             this.checkEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
 
 
@@ -112,6 +112,23 @@ class GameBoard {
         }
     }
 
+    flipPiecesInArray(arrayOfCoords){
+        for(var coordIndex=0; coordIndex<arrayOfCoords.length; coordIndex++){
+            var x=arrayOfCoords[coordIndex].xCord;
+            var y=arrayOfCoords[coordIndex].yCord;
+            //find object on page with this coord
+            // var position33 = $("div[coord= '33']");
+
+            var pieceToFlip = $(`.piece[coord= '${y}${x}']`);
+            this.changeColor(pieceToFlip)
+        }
+    }
+    changeColor(domToChange){
+        domToChange.css({
+            'background-color': this.currentPlayer.color,
+        });
+    }
+
     checkEast(arrayForCheck,currentPlayer,yDirection,xDirection) {
         var currentNum = currentPlayer.num;
         var piecesToFlip = [];
@@ -126,6 +143,7 @@ class GameBoard {
                     if (piecesToFlip.length !== 0) {
                         console.log("flip this shit")
                         //call flipColor Function
+                        this.flipPiecesInArray(piecesToFlip)
                         //flip color on the board and numbers in the twoDimensionArray
                         return;
                     } else {

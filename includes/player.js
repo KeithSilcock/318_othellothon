@@ -59,6 +59,11 @@ class Player {
         return this._num;
     }
 
+    getPlayerNum(){
+        return this._num;
+    }
+
+
     get score(){
         return this._score;
     }
