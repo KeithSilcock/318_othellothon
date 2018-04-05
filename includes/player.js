@@ -19,7 +19,7 @@ class Player {
             this.playerTag='p2';
         }
 
-        this._movesLeft=64;
+        this._movesLeft=60;
 
         this.displayPlayerStats();
     }
@@ -34,14 +34,12 @@ class Player {
 
     countDown(){
         this.displayPlayerStats();
-        if(--this.currentTime >= 296){
+        if(--this.currentTime >= 0){
             console.log(this.currentTime)
         }else{
             //time ran out
-            this.reset();
-            this.stopTimer()
             this.loseFunction(this.name)
-            // this.loserCallback();
+            this.stopTimer();
         }
     }
 
@@ -50,8 +48,9 @@ class Player {
     }
 
     reset() {
-        this.score = 0;
+        this.score = 2;
         this.currentTime = this.maxTime;
+        this.stopTimer();
     }
 
     setName(name) {
@@ -102,29 +101,6 @@ class Player {
             second = '0' + second;
         }
         return second;
-    }
-    lose(){
-        var blackScreenDiv = $("<div>").addClass("blackScreen");
-        $(".container").prepend(blackScreenDiv);
-
-        var loseDiv = $("<div>").addClass("lose");
-        loseDiv.text("no waffle for losers")
-
-        var playerLost =  $("<h1>").addClass("playerLost");
-        playerLost.text(this.name + " lost!")
-        loseDiv.append(playerLost);
-
-        var loseImg = $("<img>").addClass("loseImg");
-        loseDiv.append(loseImg);
-
-        blackScreenDiv.append(loseDiv);
-
-        var buttonDiv = $("<div>").addClass("restart");
-        buttonDiv.text("more waffles");
-
-        loseDiv.append(buttonDiv);
-        buttonDiv.on("click", this.restartCallback);
-
     }
 
     displayPlayerStats() {

@@ -1,11 +1,13 @@
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 .container{
     position: relative;
     height: 100vh;
     width: 100vw;
+    horiz-align: center;
 }
 .gameBoard{
     display: inline-block;
@@ -17,6 +19,8 @@ body {
     border-radius: 30px;
     padding: 1% 1%;
     box-sizing: border-box;
+
+    left:10%;
 
 }
 .row{
@@ -111,6 +115,7 @@ body {
     display: inline-block;
     height: 80%;
     width: 25%;
+    left:10%;
     background-color: #ffca38;
 }
 
@@ -149,24 +154,24 @@ body {
 
 
 .player1-piece {
-    height: 10%;
-    width: 10%;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     position: absolute;
     background-color: black;
     left: 33%;
-    top: 34%;
+    top: 29%;
     transform: translate(-50%, -50%);
 }
 
 .player2-piece {
-    height: 10%;
-    width: 10%;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     position: absolute;
     background-color: black;
     left: 33%;
-    top: 34%;
+    top: 29%;
     transform: translate(-50%, -50%);
 }
 
@@ -242,4 +247,9 @@ body {
     font-family: "ihop";
     src: url(./fonts/ihop.ttf);
 }
-
+.resetButton{
+    position: absolute;
+    top:90%;
+    left: 50%;
+    transform: translate(-50%,0);
+}

@@ -28,13 +28,73 @@ class GameBoard {
 
         this.player1.displayPlayerStats();
         this.player2.displayPlayerStats();
+        this.notifyPlayerTurn();
+        this.spawnStartPieces();
+        this.updatePlayerScore();
     }
 
+    spawnStartPieces() {
+        var position33 = $("div[coord= '33']");
+        var position34 = $("div[coord= '34']");
+        var position43 = $("div[coord= '43']");
+        var position44 = $("div[coord= '44']");
+
+        var newPieceC33 = new Piece(this.player1);
+        var placedPieceforC33 = newPieceC33.renderPiece(position33);
+        newPieceC33.changeColor(this.player1.color);
+
+        var newPieceC44 = new Piece(this.player1);
+        var placedPieceforC44 = newPieceC44.renderPiece(position44);
+        newPieceC44.changeColor(this.player1.color);
+
+        position33.append(placedPieceforC33);
+        position44.append(placedPieceforC44);
+
+        var newPieceC34 = new Piece(this.player2);
+        var placedPieceforC34 = newPieceC34.renderPiece(position34);
+        newPieceC34.changeColor(this.player2.color);
+
+        var newPieceC43 = new Piece(this.player2);
+        var placedPieceforC43 = newPieceC43.renderPiece(position43);
+        newPieceC43.changeColor(this.player2.color);
+
+        position34.append(placedPieceforC34);
+        position43.append(placedPieceforC43);
+    }
+
+    createGameEndScreen(playerWhoWon) {
+        debugger
+        playerWhoWon=playerWhoWon.toLowerCase();
+        var blackScreenDiv = $("<div>").addClass("blackScreen");
+        $(".container").prepend(blackScreenDiv);
+
+        var WinDiv = $("<div>").addClass("win");
+        WinDiv.text("winner winner waffle dinner")
+
+        var playerWon = $("<h1>").addClass("playerWon");
+        playerWon.text(playerWhoWon + " won!")
+        WinDiv.append(playerWon);
+
+        var WinImg = $("<img>").addClass("winImg");
+        WinDiv.append(WinImg);
+
+        blackScreenDiv.append(WinDiv);
+
+        var buttonDiv = $("<div>").addClass("restart");
+        buttonDiv.text("more waffles");
+
+        WinDiv.append(buttonDiv);
+        buttonDiv.on("click", this.restartGame.bind(this));
+    }
     loseGameFunction(winner){
         console.log('lost')
         this.reset();
         var winPlayer=winner;
-
+        this.createGameEndScreen(winPlayer);
+    }
+    restartGame(){
+        $("div").remove(".blackScreen");
+        this.reset();
     }
     reset(){
         this.twoDimensionArray = [
@@ -51,7 +111,13 @@ class GameBoard {
         this.lastSquareCoords= null;
         this.currentPlayer=this.player1;
         this.otherPlayer=this.player2;
+        this.notifyPlayerTurn();
 
+        $('.piece').remove();
+        this.spawnStartPieces();
+        this.player1.reset();
+        this.player2.reset();
+        this.updatePlayerScore();
     }
     createBoard(size) {
         var boardSize = {rows: size, squares: size};
@@ -82,7 +148,8 @@ class GameBoard {
     }
 
     attachHandler(){
-        this.gameBoard.on('click', this.clickedBoard.bind(this))
+        this.gameBoard.on('click', this.clickedBoard.bind(this));
+        $(".resetButton").on('click', this.reset.bind(this));
     }
 
     clickedBoard(divClicked) {
@@ -126,8 +193,22 @@ class GameBoard {
         }
         this.player1.score=count1;
         this.player2.score=count2;
-        this.player1.movesLeft=(this.size*this.size)-count1;
-        this.player2.movesLeft=(this.size*this.size)-count2;
+
+        var player1MovesLeft=(this.size*this.size)-(count1+count2);
+        var player2MovesLeft=(this.size*this.size)-(count1+count2);
+        if(player1MovesLeft===0){
+            this.createGameEndScreen(this.player1.name);
+            return;
+        }else if(player2MovesLeft===0){
+            this.createGameEndScreen(this.player2.name);
+            return
+        }
+
+        this.player1.movesLeft=player1MovesLeft;
+        this.player2.movesLeft=player2MovesLeft;
+
+
+
         this.currentPlayer.displayPlayerStats();
         this.otherPlayer.displayPlayerStats();
 
@@ -147,7 +228,6 @@ class GameBoard {
     }
 
     switchPlayer() {
-        this.notifyPlayerTurn();
         if (this.currentPlayer.getPlayerNum() === '1') {
             this.currentPlayer = this.player2;
             this.otherPlayer=this.player1;
@@ -155,6 +235,7 @@ class GameBoard {
             this.currentPlayer = this.player1;
             this.otherPlayer=this.player2;
         }
+        this.notifyPlayerTurn();
     }
     spawnPiece(divClicked) {
         var newPiece = new Piece(this.currentPlayer);
