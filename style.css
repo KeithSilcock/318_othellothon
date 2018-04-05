@@ -10,6 +10,7 @@ body {
     horiz-align: center;
 }
 .playerBox{
+    position: relative;
     display: inline-block;
     height: 500px;
     width: 500px;
@@ -20,11 +21,12 @@ body {
     padding: 1% 1%;
     box-sizing: border-box;
     z-index: 0;
+    left:10%;
 }
 .gameBoard{
     display: inline-block;
     position: absolute;
-    left: 25.3%;
+    left: 35.3%;
     height: 500px;
     width: 500px;
     margin: auto;
@@ -35,7 +37,14 @@ body {
 
     filter: url(#goo);
 
-    left:10%;
+    /*left:10%;*/
+}
+~.gameBoard:hover{
+    cursor: url("includes/images/syrupCaraffe.png"), auto;
+
+}
+.playerBox:hover{
+    cursor: url("includes/images/syrupCaraffe.png"), auto;
 
 }
 .row, .fakeRow{
@@ -59,7 +68,7 @@ body {
     height: 90%;
     width: 8%;
     /*background-color: #d59024;*/
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 
 }
 .blackScreen{
@@ -249,13 +258,13 @@ body {
     background-color: #009fd7;
 }
 .color2{
-    background-color: #b65824;
+    background-color: rebeccapurple;
 }
 .color3{
     background-color: red;
 }
 .color4{
-    background-color: orange;
+    background-color: green;
 }
 .submitCharacters{
     position: absolute;
