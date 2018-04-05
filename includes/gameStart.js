@@ -145,6 +145,8 @@ class GameStartController{
 
     }
 }
+
 $(document).ready(function () {
     var newGame = new GameStartController();
 });
+

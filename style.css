@@ -45,7 +45,7 @@ body {
     z-index: +1;
     box-sizing: border-box;
 }
-.rules{
+.rules, .win{
     background-color: whitesmoke;
     border-radius: 30px;
     height:80%;
@@ -55,7 +55,14 @@ body {
     vertical-align: center;
     text-align: center;
 }
-.startButton{
+.playerWon{
+    font-family: "ihop";
+    font-size: 5vh;
+}
+.winImg{
+
+}
+.startButton, .restart{
     background-color: cornflowerblue;
     height:10%;
     width:10%;
