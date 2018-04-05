@@ -44,6 +44,7 @@ class GameStartView{
         var color = divClicked.css('background-color');
         if(divClicked.hasClass('p1')){
             this.player1.setColor(color);
+
         }else{
             this.player2.setColor(color);
         }
