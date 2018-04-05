@@ -1,11 +1,11 @@
 class Player {
-    constructor(name, color, img, num, time, timerCallBack) {
+    constructor(name, color, img, num, scoreBoardDOM, time, timerCallBack) {
         this.name = name;
         this.color = color;
         this.img = img;
         this._num=num;
 
-        this._score=0;
+        this._score=2;
 
         if(!time){
             time=300; //5 mins
@@ -14,6 +14,13 @@ class Player {
         this.currentTime = this.maxTime;
         this.timerObj=null;
         this.timerCallback=timerCallBack;
+
+        if(this._num==='1'){
+            this.playerTag='p1';
+        }else{
+            this.playerTag='p2';
+        }
+        this.displayPlayerStats();
         // this.movesLeft= size*size;
     }
 
@@ -22,6 +29,7 @@ class Player {
     }
 
     countDown(){
+        this.displayPlayerStats();
         if(--this.currentTime > 0){
             console.log(this.currentTime)
         }else{
@@ -58,6 +66,7 @@ class Player {
     get num(){
         return this._num;
     }
+
     getPlayerNum(){
         return this._num;
     }
@@ -75,10 +84,10 @@ class Player {
     }
 
     displayPlayerStats() {
-        $('.playerName').text(this.name);
-        $('.playerScore').text(this._score);
-        $('.playerPlaysLeft').text('movesLeft');
-        $('.playerTimer').text(this.currentTime);
+        $('.playerName.' + this.playerTag).text(this.name);
+        $('.playerScore.'+ this.playerTag).text(this.score);
+        $('.playerPlaysLeft.'+ this.playerTag).text('movesLeft');
+        $('.playerTimer.'+ this.playerTag).text(this.currentTime);
     }
 
 }

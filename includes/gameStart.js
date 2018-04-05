@@ -1,9 +1,3 @@
-class GameStartModel{
-    constructor(){
-
-    }
-}
-
 class GameStartView{
     constructor(setPlayerNamesCallback){
         this.createStartScreen();
