@@ -22,12 +22,35 @@ class GameStartView{
         var blackScreenDiv = $("<div>").addClass("blackScreen");
         $(".container").prepend(blackScreenDiv);
         var ruleDiv = $("<div>").addClass("rules");
+      
         ruleDiv.text("rule:")
+        var ruleP = $("<p>", {
+            'class': 'rulesParagraph',
+            'text': 'The goal is to get the majority of colour discs on the board at the end of the game.',
+        });
+        ruleDiv.append(ruleP);
+      
         blackScreenDiv.append(ruleDiv);
         var buttonDiv = $("<div>").addClass("startButton");
         buttonDiv.text("Start Game");
         ruleDiv.append(buttonDiv);
         buttonDiv.on("click", this.closeRuleScreen.bind(this));
+
+        // add clicks for color divs
+        $('.colorChoice').on('click', this.addColorToPlayer.bind(this));
+    }
+    addColorToPlayer(colorDivClicked){
+        var divClicked = $(colorDivClicked.target);
+        var color = divClicked.css('background-color');
+        if(divClicked.hasClass('p1')){
+            this.player1.setColor(color);
+        }else{
+            this.player2.setColor(color);
+        }
+
+        divClicked.css({
+            'border': '3px solid black',
+        })
     }
     closeRuleScreen(){
         $("div").remove(".rules");
@@ -46,16 +69,23 @@ class GameStartView{
     playersPressReady(){
         //make sure text is in input, selected colors
         //go to game page
-        if(this.player1Name==='' || this.player2Name===''){
-            alert('You need to enter a valid name')
-        }
         this.player1.setName(this.p1Input.val());
         this.player2.setName(this.p2Input.val());
 
-        this.player1.setColor('blue');//do later
-        this.player2.setColor('red');//do later
+        if(this.player1.getName()==='' || this.player2.getName()===''){
+            alert('You need to enter a valid name');
+            return;
+        }
+        else if(this.player1.getColor()===null || this.player2.getColor()===null){
+            alert('You both need to select a color');
+            return;
+        }
+        else if(this.player1.getColor() === this.player2.getColor()){
+            alert("You can't select the same color!");
+            return;
+        }
 
-        this.callback(this.player1, this.player2)
+        this.callback(this.player1, this.player2);
         this.closePlayerSelect();
         this.spawnStartPieces();
     }
@@ -87,21 +117,31 @@ class GameStartView{
         position34.append(placedPieceforC34);
         position43.append(placedPieceforC43);
     }
+
+// getPlayers(){
+//     var player1 = new Player(this.player1Name, this.player1Color, null, '1')
+//     var player2 = new Player(this.player2Name, this.player2Color, null, '2')
+//     return [player1, player2]
+// }
 }
 
 class GameStartController{
     constructor(){
-        this._view = new GameStartView(this.getPlayerObj);
+        this.view = new GameStartView(this.getPlayerObj);
     }
 
     getPlayerObj(p1, p2){
         // console.log(p1, p2);
         // var newGame = new GameBoard(8, p1, p2);
 
-        var player1 = new Player('harrison', 'blue', null, '1');
-        var player2 = new Player('dona', 'red', null, '2');
+        // var player1 = new Player('Harrison', 'blue', null, '1');
+        // var player2 = new Player('Dona', 'red', null, '2');
 
-        var newGame = new GameBoard(8, player1, player2);
+        //var player1 = new Player('harrison', 'blue', null, '1');
+        //var player2 = new Player('dona', 'red', null, '2');
+
+
+        var newGame = new GameBoard(8, p1, p2);
 
     }
 }
