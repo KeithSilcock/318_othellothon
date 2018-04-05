@@ -8,6 +8,7 @@ class GameBoard {
         this.player2=p2;
         this.lastSquareCoords= null;
         this.currentPlayer=this.player1;
+        this.otherPlayer=this.player2;
 
         this.twoDimensionArray = [
             [0,0,0,0,0,0,0,0],
@@ -70,7 +71,7 @@ class GameBoard {
                 this.updateStorageArray(this.lastSquareCoords);
 
 
-                // this.updatePlayerScore();
+                this.updatePlayerScore();
 
                 this.switchPlayer();
                 this.currentPlayer.startTimer();
@@ -79,23 +80,28 @@ class GameBoard {
 
     }
 
-    // updatePlayerScore(){
-    //     var allPiecesOnBoard = this.gameBoard.find('.piece');
-    //     var count1 = 0;
-    //     var count2 = 0;
-    //     for(var pieceIndex=0; pieceIndex<allPiecesOnBoard.length; pieceIndex++){
-    //         var piece = $(allPiecesOnBoard[pieceIndex]);
-    //
-    //         //count how many for each player, send to scoreBoard
-    //         if(piece.attr('player') === '1'){
-    //             count1++;
-    //         }else if(piece.attr('player') === '2'){
-    //             count2++;
-    //         }
-    //
-    //     }
-    //     console.log(this.p1ScoreBoard.attemptsLeft)
-    // }
+    updatePlayerScore(){
+        var allPiecesOnBoard = this.gameBoard.find('.piece');
+        var count1 = 0;
+        var count2 = 0;
+        for(var pieceIndex=0; pieceIndex<allPiecesOnBoard.length; pieceIndex++){
+            var piece = $(allPiecesOnBoard[pieceIndex]);
+
+            //count how many for each player, send to scoreBoard
+            if(piece.attr('player') === '1'){
+                count1++;
+            }else if(piece.attr('player') === '2'){
+                count2++;
+            }
+
+        }
+        this.player1.score=count1;
+        this.player2.score=count2;
+        this.currentPlayer.displayPlayerStats();
+        this.otherPlayer.displayPlayerStats();
+
+        // console.log(this.player1)
+    }
 
     updateStorageArray(coords){
         console.log(this.twoDimensionArray)
@@ -112,8 +118,10 @@ class GameBoard {
     switchPlayer() {
         if (this.currentPlayer.getPlayerNum() === '1') {
             this.currentPlayer = this.player2;
+            this.otherPlayer=this.player1;
         } else {
             this.currentPlayer = this.player1;
+            this.otherPlayer=this.player2;
         }
     }
     spawnPiece(divClicked) {
@@ -152,12 +160,12 @@ class GameBoard {
             var x=arrayOfCoords[coordIndex].xCord;
             var y=arrayOfCoords[coordIndex].yCord;
             //find object on page with this coord
-            // var position33 = $("div[coord= '33']");
 
             var pieceToFlip = $(`.piece[coord= '${y}${x}']`);
-            this.changeColor(pieceToFlip)
+            this.changeColor(pieceToFlip);
 
-            this.updateStorageArray(''+y+x)
+            this.updateStorageArray(''+y+x);
+
         }
     }
     changeColor(domToChange){
