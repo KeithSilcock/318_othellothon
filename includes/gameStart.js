@@ -1,35 +1,36 @@
-class GameStartView{
-    constructor(setPlayerNamesCallback){
+class GameStartView {
+    constructor(setPlayerNamesCallback) {
         this.createStartScreen();
         this.p1Input = $('.p1Input');
         this.p2Input = $('.p2Input');
 
         this.submitButton = $('.playersReady');
 
-        this.player1Name=null;
-        this.player1Color=null;
+        this.player1Name = null;
+        this.player1Color = null;
 
-        this.player2Name=null;
-        this.player2Color=null;
+        this.player2Name = null;
+        this.player2Color = null;
 
         this.callback = setPlayerNamesCallback;
 
         this.handleClicks();
-        this.player1 = new Player(this.player1Name, this.player1Color, null, '1');
-        this.player2 = new Player(this.player2Name, this.player2Color, null, '2');
+        this.player1 = new Player(this.player1Name, this.player1Color, null, '1', this.restartGame.bind(this));
+        this.player2 = new Player(this.player2Name, this.player2Color, null, '2', this.restartGame.bind(this));
     }
-    createStartScreen(){
+
+    createStartScreen() {
         var blackScreenDiv = $("<div>").addClass("blackScreen");
         $(".container").prepend(blackScreenDiv);
         var ruleDiv = $("<div>").addClass("rules");
-      
+
         ruleDiv.text("rule:")
         var ruleP = $("<p>", {
             'class': 'rulesParagraph',
             'text': 'The goal is to get the majority of colour discs on the board at the end of the game.',
         });
         ruleDiv.append(ruleP);
-      
+
         blackScreenDiv.append(ruleDiv);
         var buttonDiv = $("<div>").addClass("startButton");
         buttonDiv.text("Start Game");
@@ -39,12 +40,13 @@ class GameStartView{
         // add clicks for color divs
         $('.colorChoice').on('click', this.addColorToPlayer.bind(this));
     }
-    addColorToPlayer(colorDivClicked){
+
+    addColorToPlayer(colorDivClicked) {
         var divClicked = $(colorDivClicked.target);
         var color = divClicked.css('background-color');
-        if(divClicked.hasClass('p1')){
+        if (divClicked.hasClass('p1')) {
             this.player1.setColor(color);
-        }else{
+        } else {
             this.player2.setColor(color);
         }
 
@@ -52,35 +54,40 @@ class GameStartView{
             'border': '3px solid black',
         })
     }
-    closeRuleScreen(){
+
+    closeRuleScreen() {
         $("div").remove(".rules");
         this.showPlayerSelect();
     }
-    showPlayerSelect(){
+
+    showPlayerSelect() {
         $(".gameStartContainer").removeClass("hideThis");
     }
-    handleClicks(){
-        this.submitButton.on('click',this.playersPressReady.bind(this))
+
+    handleClicks() {
+        this.submitButton.on('click', this.playersPressReady.bind(this))
     }
-    closePlayerSelect(){
+
+    closePlayerSelect() {
         $(".gameStartContainer").addClass("hideThis");
         $("div").remove(".blackScreen");
     }
-    playersPressReady(){
+
+    playersPressReady() {
         //make sure text is in input, selected colors
         //go to game page
         this.player1.setName(this.p1Input.val());
         this.player2.setName(this.p2Input.val());
 
-        if(this.player1.getName()==='' || this.player2.getName()===''){
+        if (this.player1.getName() === '' || this.player2.getName() === '') {
             alert('You need to enter a valid name');
             return;
         }
-        else if(this.player1.getColor()===null || this.player2.getColor()===null){
+        else if (this.player1.getColor() === null || this.player2.getColor() === null) {
             alert('You both need to select a color');
             return;
         }
-        else if(this.player1.getColor() === this.player2.getColor()){
+        else if (this.player1.getColor() === this.player2.getColor()) {
             alert("You can't select the same color!");
             return;
         }
@@ -89,7 +96,8 @@ class GameStartView{
         this.closePlayerSelect();
         this.spawnStartPieces();
     }
-    spawnStartPieces(){
+
+    spawnStartPieces() {
         var position33 = $("div[coord= '33']");
         var position34 = $("div[coord= '34']");
         var position43 = $("div[coord= '43']");
@@ -118,6 +126,39 @@ class GameStartView{
         position43.append(placedPieceforC43);
     }
 
+    createGameEndScreen(playerWon) {
+        var blackScreenDiv = $("<div>").addClass("blackScreen");
+        $(".container").prepend(blackScreenDiv);
+
+        var WinDiv = $("<div>").addClass("win");
+        WinDiv.text("winner winner waffle dinner")
+
+        var playerWon = $("<h1>").addClass("playerWon");
+        playerWon.text(playerWon + " Won!")
+        WinDiv.append(playerWon);
+
+        var WinImg = $("<img>").addClass("winImg");
+        WinDiv.append(WinImg);
+
+        blackScreenDiv.append(WinDiv);
+
+        var buttonDiv = $("<div>").addClass("restart");
+        buttonDiv.text("more waffles");
+
+        WinDiv.append(buttonDiv);
+        buttonDiv.on("click", this.restartGame.bind(this));
+    }
+
+    restartGame() {
+        this.closeBlackScreen();
+        this.newGame = null;
+        // restart and player select
+        var newGame = new GameStartController();
+
+    }
+    closeBlackScreen(){
+        $("div").remove(".blackScreen");
+    }
 // getPlayers(){
 //     var player1 = new Player(this.player1Name, this.player1Color, null, '1')
 //     var player2 = new Player(this.player2Name, this.player2Color, null, '2')

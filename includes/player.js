@@ -1,5 +1,5 @@
 class Player {
-    constructor(name, color, img, num, scoreBoardDOM, time, timerCallBack) {
+    constructor(name, color, img, num, restartGame) {
         this.name = name;
         this.color = color;
         this.img = img;
@@ -7,13 +7,11 @@ class Player {
 
         this._score=2;
 
-        if(!time){
-            time=300; //5 mins
-        }
-        this.maxTime=time;
+        this.maxTime=300; //5 mins
         this.currentTime = this.maxTime;
         this.timerObj=null;
-        this.timerCallback=timerCallBack;
+        this.restartCallback=restartGame;
+        this.loseFunction = null;
 
         if(this._num==='1'){
             this.playerTag='p1';
@@ -24,19 +22,24 @@ class Player {
         // this.movesLeft= size*size;
     }
 
+    setLoseFunction(loseFunc){
+        this.loseFunction=loseFunc;
+    }
+
     startTimer(){
         this.timerObj = setInterval(this.countDown.bind(this), 1000)
     }
 
     countDown(){
         this.displayPlayerStats();
-        if(--this.currentTime >= 0){
+        if(--this.currentTime >= 296){
             console.log(this.currentTime)
         }else{
             //time ran out
             this.reset();
             this.stopTimer()
-            this.timerCallback();
+            this.loseFunction(this.name)
+            // this.loserCallback();
         }
     }
 
@@ -95,8 +98,29 @@ class Player {
         }
         return second;
     }
+    lose(){
+        var blackScreenDiv = $("<div>").addClass("blackScreen");
+        $(".container").prepend(blackScreenDiv);
 
+        var loseDiv = $("<div>").addClass("lose");
+        loseDiv.text("no waffle for losers")
 
+        var playerLost =  $("<h1>").addClass("playerLost");
+        playerLost.text(this.name + " lost!")
+        loseDiv.append(playerLost);
+
+        var loseImg = $("<img>").addClass("loseImg");
+        loseDiv.append(loseImg);
+
+        blackScreenDiv.append(loseDiv);
+
+        var buttonDiv = $("<div>").addClass("restart");
+        buttonDiv.text("more waffles");
+
+        loseDiv.append(buttonDiv);
+        buttonDiv.on("click", this.restartCallback);
+
+    }
 
     displayPlayerStats() {
         $('.playerName.' + this.playerTag).text(this.name);
