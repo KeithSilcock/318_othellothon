@@ -100,6 +100,8 @@ class GameBoard {
         }
         this.player1.score=count1;
         this.player2.score=count2;
+        this.player1.movesLeft=(this.size*this.size)-count1;
+        this.player2.movesLeft=(this.size*this.size)-count2;
         this.currentPlayer.displayPlayerStats();
         this.otherPlayer.displayPlayerStats();
 
@@ -135,6 +137,7 @@ class GameBoard {
         this.placedPiece = newPiece.changeColor(this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
+
     }
 
     callChecks(){
