@@ -18,8 +18,10 @@ class Player {
         }else{
             this.playerTag='p2';
         }
+
+        this._movesLeft=64;
+
         this.displayPlayerStats();
-        // this.movesLeft= size*size;
     }
 
     setLoseFunction(loseFunc){
@@ -59,6 +61,10 @@ class Player {
         return this.name;
     }
 
+    set movesLeft(number){
+        this._movesLeft=number;
+    }
+
     setColor(color) {
         this.color = color;
     }
@@ -77,7 +83,6 @@ class Player {
     getPlayerNum(){
         return this._num;
     }
-
 
     get score(){
         return this._score;
@@ -124,9 +129,14 @@ class Player {
 
     displayPlayerStats() {
         $('.playerName.' + this.playerTag).text(this.name);
+        $('.playerName.' + this.playerTag).css('background-color', this.getColor());
+
         $('.playerScore.'+ this.playerTag).text(this.score);
-        $('.playerPlaysLeft.'+ this.playerTag).text('movesLeft');
+
+        $('.playerPlaysLeft.'+ this.playerTag).text('movesLeft: '+this._movesLeft);
+
         $('.playerTimer.'+ this.playerTag).text(this.minutes + ':' + this.seconds);
+
     }
 
 }
