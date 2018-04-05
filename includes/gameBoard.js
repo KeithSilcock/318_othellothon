@@ -43,8 +43,10 @@ class GameBoard {
         var boardSize = {rows: size, squares: size};
         var rowNumber = boardSize.rows;
         for (var rowIndex = 0; rowIndex < rowNumber; rowIndex++) {
+            var fakeRow = $("<div>").addClass("fakeRow");
             var rowMaker = $("<div>").addClass("row");
             for (var squareIndex = 0; squareIndex < rowNumber; squareIndex++) {
+                var fakesquare = $("<div>").addClass('fakeSquare');
                 var squareMaker = $("<div>").addClass('square');
                 if (rowIndex % 2 === 0 && squareIndex % 2 === 0 || rowIndex % 2 === 1 && squareIndex % 2 === 1) {
                     squareMaker.addClass("light");
@@ -61,7 +63,9 @@ class GameBoard {
                     console.log("GameBoard error");
                 }
                 rowMaker.append(squareMaker);
+                fakeRow.append(fakesquare);
             }
+            $(".playerBox").append(fakeRow);
             this.gameBoard.append(rowMaker);
         }
 
