@@ -73,6 +73,7 @@
 
 
     <div class="gameBoard"></div>
+    <!--<div class="playerBox"></div>-->
 
 
     <div class="player2 playerContainer p2">
@@ -92,11 +93,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
     <defs>
         <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blurredBlobs" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blurredBlobs" />
             <feColorMatrix in="blurredBlobs" mode="matrix" values="1 0 0 0 0
               0 1 0 0 0
               0 0 1 0 0
-              0 0 0 20 -10" result="contrastedBlobs" />
+              0 0 0 5 -.7" result="contrastedBlobs" />
             <feComposite in="SourceGraphic" in2="contrastedBlobs" operator="atop"/>
         </filter>
     </defs>
