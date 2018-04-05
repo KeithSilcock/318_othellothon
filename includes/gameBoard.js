@@ -133,6 +133,7 @@ class GameBoard {
     }
 
     switchPlayer() {
+        this.notifyPlayerTurn();
         if (this.currentPlayer.getPlayerNum() === '1') {
             this.currentPlayer = this.player2;
             this.otherPlayer=this.player1;
@@ -420,15 +421,15 @@ class GameBoard {
         }
     }
 
-    /*
-    flipPieces() {
-        var square = $(divClicked.target);
-        var squareCoords = {x:square.attr('row'), y:square.attr('column')};
-        for (index = squareCoords.x; index < this.size; index++) {
-
+    notifyPlayerTurn(){
+        if (this.currentPlayer.num === '1') {
+            $('.playerName.p1').css({'box-shadow': '5px 5px 5px 5px'});
+            $('.playerName.p2').css({'box-shadow': 'none'});
+        } else {
+            $('.playerName.p1').css({'box-shadow': 'none'});
+            $('.playerName.p2').css({'box-shadow': '5px 5px 5px 5px'});
         }
     }
-    */
 }
 
 

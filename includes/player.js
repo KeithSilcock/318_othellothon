@@ -129,9 +129,13 @@ class Player {
 
     displayPlayerStats() {
         $('.playerName.' + this.playerTag).text(this.name);
+
+        $('.playerScore.'+ this.playerTag).text('x ' + this.score);
+      
+
         $('.playerName.' + this.playerTag).css('background-color', this.getColor());
 
-        $('.playerScore.'+ this.playerTag).text(this.score);
+      
 
         $('.playerPlaysLeft.'+ this.playerTag).text('movesLeft: '+this._movesLeft);
 
