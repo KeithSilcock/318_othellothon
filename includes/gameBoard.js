@@ -22,6 +22,9 @@ class GameBoard {
         ];
         this.createBoard(this.size);
         this.attachHandler();
+
+        this.player1.displayPlayerStats();
+        this.player2.displayPlayerStats();
     }
 
     createBoard(size) {

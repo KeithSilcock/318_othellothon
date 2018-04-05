@@ -15,8 +15,8 @@ class GameStartView{
         this.callback = setPlayerNamesCallback;
 
         this.handleClicks();
-        this.player1 = new Player(this.player1Name, this.player1Color, null, 1);
-        this.player2 = new Player(this.player2Name, this.player2Color, null, 2);
+        this.player1 = new Player(this.player1Name, this.player1Color, null, '1');
+        this.player2 = new Player(this.player2Name, this.player2Color, null, '2');
     }
     createStartScreen(){
         var blackScreenDiv = $("<div>").addClass("blackScreen");
