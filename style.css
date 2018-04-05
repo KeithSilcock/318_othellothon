@@ -109,10 +109,11 @@ body {
     height: 10%;
     width: 50%;
     position: absolute;
-    background-color: #d52129;
+    background-color: white;
     left: 50%;
     top: 10%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .playerImg {
@@ -129,12 +130,36 @@ body {
     height: 50%;
     width: 70%;
     position: absolute;
-    background-color: #009fd7;
+    background-color: white;
     left: 50%;
     top: 70%;
     transform: translate(-50%, -50%);
+    font-size: 2rem;
+    text-align: center;
 }
 
+
+.player1-piece {
+    height: 10%;
+    width: 10%;
+    border-radius: 50%;
+    position: absolute;
+    background-color: black;
+    left: 33%;
+    top: 34%;
+    transform: translate(-50%, -50%);
+}
+
+.player2-piece {
+    height: 10%;
+    width: 10%;
+    border-radius: 50%;
+    position: absolute;
+    background-color: black;
+    left: 33%;
+    top: 34%;
+    transform: translate(-50%, -50%);
+}
 
 
 .piece{

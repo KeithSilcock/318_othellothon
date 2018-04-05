@@ -100,7 +100,7 @@ class Player {
 
     displayPlayerStats() {
         $('.playerName.' + this.playerTag).text(this.name);
-        $('.playerScore.'+ this.playerTag).text(this.score);
+        $('.playerScore.'+ this.playerTag).text('x ' + this.score);
         $('.playerPlaysLeft.'+ this.playerTag).text('movesLeft');
         $('.playerTimer.'+ this.playerTag).text(this.minutes + ':' + this.seconds);
     }
