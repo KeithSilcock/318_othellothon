@@ -83,11 +83,26 @@ class Player {
         this._score=newScore;
     }
 
+    get minutes() {
+        var minutes = Math.floor(this.currentTime / 60);
+        return minutes
+    }
+
+    get seconds() {
+        var second = Math.floor(this.currentTime % 60);
+        if (second < 10) {
+            second = '0' + second;
+        }
+        return second;
+    }
+
+
+
     displayPlayerStats() {
         $('.playerName.' + this.playerTag).text(this.name);
         $('.playerScore.'+ this.playerTag).text(this.score);
         $('.playerPlaysLeft.'+ this.playerTag).text('movesLeft');
-        $('.playerTimer.'+ this.playerTag).text(this.currentTime);
+        $('.playerTimer.'+ this.playerTag).text(this.minutes + ':' + this.seconds);
     }
 
 }
