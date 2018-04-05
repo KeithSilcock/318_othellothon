@@ -22,7 +22,7 @@ class GameStartView{
         var blackScreenDiv = $("<div>").addClass("blackScreen");
         $(".container").prepend(blackScreenDiv);
         var ruleDiv = $("<div>").addClass("rules");
-        ruleDiv.text("Rule:")
+        ruleDiv.text("rule:")
         blackScreenDiv.append(ruleDiv);
         var buttonDiv = $("<div>").addClass("startButton");
         buttonDiv.text("Start Game");
@@ -98,8 +98,8 @@ class GameStartController{
         // console.log(p1, p2);
         // var newGame = new GameBoard(8, p1, p2);
 
-        var player1 = new Player('Harrison', 'blue', null, '1');
-        var player2 = new Player('Dona', 'red', null, '2');
+        var player1 = new Player('harrison', 'blue', null, '1');
+        var player2 = new Player('dona', 'red', null, '2');
 
         var newGame = new GameBoard(8, player1, player2);
 
