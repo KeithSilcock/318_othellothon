@@ -7,6 +7,18 @@ body {
     height: 100vh;
     width: 100vw;
 }
+.playerBox{
+    display: inline-block;
+    position: absolute;
+    left:25%;
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    background-color: #f9e594;
+    border-radius: 30px;
+    padding: 1% 1%;
+    box-sizing: border-box;
+}
 .gameBoard{
     display: inline-block;
     position: relative;
@@ -17,6 +29,23 @@ body {
     border-radius: 30px;
     padding: 1% 1%;
     box-sizing: border-box;
+
+    /*filter: url(#goo);*/
+
+}
+.playerBox{
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    left:25%;
+    margin: auto;
+    background-image: url("includes/images/wafflePattern.jpg");
+    /*background-color: black;*/
+    border-radius: 30px;
+    padding: 1% 1%;
+    box-sizing: border-box;
+    z-index: -5;
+
 
 }
 .row{
@@ -30,12 +59,9 @@ body {
     margin: auto;
     height: 90%;
     width: 8%;
-}
-.light{
     background-color: #d59024;
-}
-.dark{
-    background-color: #d59024;
+    border: 1px solid black;
+
 }
 .blackScreen{
     position:absolute;
