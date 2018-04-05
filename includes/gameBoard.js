@@ -65,8 +65,7 @@ class GameBoard {
 
             this.spawnPiece(divClicked);
             this.updateStorageArray(this.lastSquareCoords);
-            debugger;
-            this.checkEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+            this.callChecks();
 
 
             // this.updatePlayerScore();
@@ -111,6 +110,27 @@ class GameBoard {
             this.currentPlayer = this.player1;
         }
     }
+    spawnPiece(divClicked) {
+        var newPiece = new Piece(this.currentPlayer);
+
+        var squareClicked = $(divClicked.target);
+        this.placedPiece = newPiece.renderPiece(squareClicked);
+        this.placedPiece = newPiece.changeColor(this.currentPlayer.color);
+
+        divClicked.target.append(this.placedPiece[0])
+    }
+
+    callChecks(){
+        this.checkNorth(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+        this.checkEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+        this.checkSouth(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+        this.checkWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+        this.checkNorthEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+        this.checkNorthWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+        this.checkSouthEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+        this.checkSouthWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+
+    }
 
     checkEast(arrayForCheck,currentPlayer,yDirection,xDirection) {
         var currentNum = currentPlayer.num;
@@ -125,7 +145,7 @@ class GameBoard {
                 if (arrayForCheck[currentY][rowIndex] === currentNum) {
                     if (piecesToFlip.length !== 0) {
                         console.log("flip this shit")
-                        //call flipColor Function
+                        flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
                         return;
                     } else {
@@ -140,44 +160,200 @@ class GameBoard {
         }
     }
 
-
-    spawnPiece(divClicked) {
-        var newPiece = new Piece(this.currentPlayer);
-
-        var squareClicked = $(divClicked.target);
-        this.placedPiece = newPiece.renderPiece(squareClicked);
-        this.placedPiece = newPiece.changeColor(this.currentPlayer.color);
-
-        divClicked.target.append(this.placedPiece[0])
-    }
-    checkWest({y:yDirection,x:xDirection}) {
-
-
-        divClicked.target.append(this.placedPiece[0])
-    }
-
-    checkNorth({y:yDirection,x:xDirection}) {
-
-    }
-
-    checkSouth({y:yDirection,x:xDirection}) {
-
-    }
-
-    checkNorthEast({y:yDirection,x:xDirection}){
-
-    }
-
-    checkNorthWest({y:yDirection,x:xDirection}){
-
+    checkWest(arrayForCheck,currentPlayer,yDirection,xDirection) {
+        var currentNum = currentPlayer.num;
+        var piecesToFlip = [];
+        var currentY = parseInt(yDirection);
+        var currentX = parseInt(xDirection);
+        for(var rowIndex = currentX-1; rowIndex >= 0; rowIndex--){
+            if(arrayForCheck[currentY][rowIndex] === 0) {
+                console.log("empty on west");
+                return;
+            }else{
+                if (arrayForCheck[currentY][rowIndex] === currentNum) {
+                    if (piecesToFlip.length !== 0) {
+                        console.log("flip this shit")
+                        flipPiecesInArray(piecesToFlip);
+                        //flip color on the board and numbers in the twoDimensionArray
+                        return;
+                    } else {
+                        console.log("Nothing to Flip");
+                        return;
+                    }
+                } else {
+                    piecesToFlip.push({yCord:currentY, xCord:rowIndex})
+                    console.log("push piece")
+                }
+            }
+        }
     }
 
-    checkSouthEast({y:yDirection,x:xDirection}){
-
+    checkNorth(arrayForCheck,currentPlayer,yDirection,xDirection) {
+        var currentNum = currentPlayer.num;
+        var piecesToFlip = [];
+        var currentY = parseInt(yDirection);
+        var currentX = parseInt(xDirection);
+        for(var columnIndex = currentY-1; columnIndex >= 0; columnIndex--){
+            if(arrayForCheck[currentX][columnIndex] === 0) {
+                console.log("empty on North");
+                return;
+            }else{
+                if (arrayForCheck[currentX][columnIndex] === currentNum) {
+                    if (piecesToFlip.length !== 0) {
+                        console.log("flip this shit")
+                        flipPiecesInArray(piecesToFlip);
+                        //flip color on the board and numbers in the twoDimensionArray
+                        return;
+                    } else {
+                        console.log("Nothing to Flip");
+                        return;
+                    }
+                } else {
+                    piecesToFlip.push({yCord:columnIndex, xCord:currentX})
+                    console.log("push piece")
+                }
+            }
+        }
     }
 
-    checkSouthWest({y:yDirection,x:xDirection}){
+    checkSouth(arrayForCheck,currentPlayer,yDirection,xDirection) {
+        var currentNum = currentPlayer.num;
+        var piecesToFlip = [];
+        var currentY = parseInt(yDirection);
+        var currentX = parseInt(xDirection);
+        for(var columnIndex = currentY+1; columnIndex < this.size; columnIndex++){
+            if(arrayForCheck[currentX][columnIndex] === 0) {
+                console.log("empty on South");
+                return;
+            }else{
+                if (arrayForCheck[currentX][columnIndex] === currentNum) {
+                    if (piecesToFlip.length !== 0) {
+                        console.log("flip this shit")
+                        flipPiecesInArray(piecesToFlip);
+                        //flip color on the board and numbers in the twoDimensionArray
+                        return;
+                    } else {
+                        console.log("Nothing to Flip");
+                        return;
+                    }
+                } else {
+                    piecesToFlip.push({yCord:columnIndex, xCord:currentX})
+                    console.log("push piece")
+                }
+            }
+        }
+    }
 
+    checkNorthEast(arrayForCheck,currentPlayer,yDirection,xDirection){
+        var currentNum = currentPlayer.num;
+        var piecesToFlip = [];
+        var currentY = parseInt(yDirection);
+        var currentX = parseInt(xDirection);
+        for(var rowIndex = currentX+1, columnIndex = currentY-1; rowIndex < this.size && columnIndex >=0; rowIndex++, columnIndex--){
+            if(arrayForCheck[columnIndex][rowIndex] === 0) {
+                console.log("empty on northeast");
+                return;
+            }else{
+                if (arrayForCheck[columnIndex][rowIndex] === currentNum) {
+                    if (piecesToFlip.length !== 0) {
+                        console.log("flip this shit")
+                        flipPiecesInArray(piecesToFlip);
+                        //flip color on the board and numbers in the twoDimensionArray
+                        return;
+                    } else {
+                        console.log("Nothing to Flip");
+                        return;
+                    }
+                } else {
+                    piecesToFlip.push({yCord:columnIndex, xCord:rowIndex})
+                    console.log("push piece")
+                }
+            }
+        }
+    }
+
+    checkNorthWest(arrayForCheck,currentPlayer,yDirection,xDirection){
+        var currentNum = currentPlayer.num;
+        var piecesToFlip = [];
+        var currentY = parseInt(yDirection);
+        var currentX = parseInt(xDirection);
+        for(var rowIndex = currentX-1, columnIndex = currentY-1; rowIndex >=0 && columnIndex >=0; rowIndex--, columnIndex--){
+            if(arrayForCheck[columnIndex][rowIndex] === 0) {
+                console.log("empty on northwest");
+                return;
+            }else{
+                if (arrayForCheck[columnIndex][rowIndex] === currentNum) {
+                    if (piecesToFlip.length !== 0) {
+                        console.log("flip this shit")
+                        flipPiecesInArray(piecesToFlip);
+                        //flip color on the board and numbers in the twoDimensionArray
+                        return;
+                    } else {
+                        console.log("Nothing to Flip");
+                        return;
+                    }
+                } else {
+                    piecesToFlip.push({yCord:columnIndex, xCord:rowIndex})
+                    console.log("push piece")
+                }
+            }
+        }
+    }
+
+    checkSouthEast(arrayForCheck,currentPlayer,yDirection,xDirection){
+        var currentNum = currentPlayer.num;
+        var piecesToFlip = [];
+        var currentY = parseInt(yDirection);
+        var currentX = parseInt(xDirection);
+        for(var rowIndex = currentX+1, columnIndex = currentY+1; rowIndex < this.size && columnIndex < this.size; rowIndex++, columnIndex++){
+            if(arrayForCheck[columnIndex][rowIndex] === 0) {
+                console.log("empty on southeast");
+                return;
+            }else{
+                if (arrayForCheck[columnIndex][rowIndex] === currentNum) {
+                    if (piecesToFlip.length !== 0) {
+                        console.log("flip this shit")
+                        flipPiecesInArray(piecesToFlip);
+                        //flip color on the board and numbers in the twoDimensionArray
+                        return;
+                    } else {
+                        console.log("Nothing to Flip");
+                        return;
+                    }
+                } else {
+                    piecesToFlip.push({yCord:columnIndex, xCord:rowIndex})
+                    console.log("push piece")
+                }
+            }
+        }
+    }
+
+    checkSouthWest(arrayForCheck,currentPlayer,yDirection,xDirection){
+        var currentNum = currentPlayer.num;
+        var piecesToFlip = [];
+        var currentY = parseInt(yDirection);
+        var currentX = parseInt(xDirection);
+        for(var rowIndex = currentX-1, columnIndex = currentY+1; rowIndex >=0 && columnIndex < this.size; rowIndex--, columnIndex++){
+            if(arrayForCheck[columnIndex][rowIndex] === 0) {
+                console.log("empty on southwest");
+                return;
+            }else{
+                if (arrayForCheck[columnIndex][rowIndex] === currentNum) {
+                    if (piecesToFlip.length !== 0) {
+                        console.log("flip this shit")
+                        flipPiecesInArray(piecesToFlip);
+                        //flip color on the board and numbers in the twoDimensionArray
+                        return;
+                    } else {
+                        console.log("Nothing to Flip");
+                        return;
+                    }
+                } else {
+                    piecesToFlip.push({yCord:columnIndex, xCord:rowIndex})
+                    console.log("push piece")
+                }
+            }
+        }
     }
 
     /*
