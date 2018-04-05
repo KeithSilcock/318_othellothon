@@ -113,36 +113,6 @@ class GameStartController{
 
     }
 }
-
-class Player {
-    constructor(name, color, img, num) {
-        this.name = name;
-        this.color = color;
-        this.img = img;
-        this.num=num;
-    }
-
-    setName(name) {
-        this.name = name;
-    }
-
-    getName(name) {
-        return this.name;
-    }
-
-    setColor(color) {
-        this.color = color;
-    }
-
-    getColor(color) {
-        return this.color;
-    }
-    getPlayerNum(){
-        return this.num;
-    }
-
-}
-
 $(document).ready(function () {
     var newGame = new GameStartController();
 });

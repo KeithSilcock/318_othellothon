@@ -4,13 +4,10 @@ class GameBoard {
         this.gameBoard=$('.gameBoard');
         this.size=size;
         this.placedPiece=null;
-        this.player1=p1;
+        this.player1=p1; // needs end game on timer
         this.player2=p2;
 
-        this.p1ScoreBoard = new Scoreboard(size);
-        this.p2ScoreBoard = new Scoreboard(size);
-
-        this.currentPlayer=this.player1; //obeject of name, color
+        this.currentPlayer=this.player1;
 
         this.twoDimensionArray = [
             [0,0,0,0,0,0,0,0],
@@ -65,12 +62,15 @@ class GameBoard {
 
         //check if empty and is a square
         if(this.getPlayerNumberFromArray(squareCoords)===0 && square.hasClass('square')) {
+            this.currentPlayer.stopTimer();
+
             this.spawnPiece(divClicked);
             this.updateStorageArray(squareCoords);
 
             // this.updateScoreBoard();
 
             this.switchPlayer();
+            this.currentPlayer.startTimer();
         }
 
     }
@@ -88,9 +88,7 @@ class GameBoard {
             }else if(piece.attr('player') === '2'){
                 count2++;
             }
-            //set the counts to scoreboard
-            this.p1ScoreBoard.score=count1;
-            this.p2ScoreBoard.score=count2;
+
         }
         console.log(this.p1ScoreBoard.attemptsLeft)
     }
@@ -141,9 +139,10 @@ class GameBoard {
 
     spawnPiece(divClicked) {
         var newPiece = new Piece(this.currentPlayer);
+
         var squareClicked = divClicked.target;
         this.placedPiece = newPiece.renderPiece(squareClicked);
-        this.placedPiece = newPiece.changeColor(this.placedPiece, this.currentPlayer.color);
+        this.placedPiece = newPiece.changeColor(this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
 
