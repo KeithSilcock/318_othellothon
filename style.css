@@ -9,49 +9,44 @@ body {
 }
 .playerBox{
     display: inline-block;
-    position: absolute;
-    left:25%;
     height: 500px;
     width: 500px;
     margin: auto;
+    /*background-image: url("./includes/images/homemade_waffle.png");*/
     background-color: #f9e594;
     border-radius: 30px;
     padding: 1% 1%;
     box-sizing: border-box;
+    z-index: 0;
 }
 .gameBoard{
     display: inline-block;
-    position: relative;
-    height: 500px;
-    width: 500px;
-    margin: auto;
-    background-color: #f9e594;
-    border-radius: 30px;
-    padding: 1% 1%;
-    box-sizing: border-box;
-
-    /*filter: url(#goo);*/
-
-}
-.playerBox{
     position: absolute;
+    left: 25.3%;
     height: 500px;
     width: 500px;
-    left:25%;
     margin: auto;
-    background-image: url("includes/images/wafflePattern.jpg");
-    /*background-color: black;*/
+    /*background-color: #f9e594;*/
     border-radius: 30px;
     padding: 1% 1%;
     box-sizing: border-box;
-    z-index: -5;
 
+    filter: url(#goo);
 
 }
-.row{
+.row, .fakeRow{
     display: flex;
     height: 9%;
     margin: 3% 0;
+}
+.fakeSquare{
+    display: inline-flex;
+    justify-content: space-between;
+    margin: auto;
+    height: 90%;
+    width: 8%;
+    background-color: #d59024;
+    /*border: 1px solid black;*/
 }
 .square{
     display: inline-flex;
@@ -59,7 +54,7 @@ body {
     margin: auto;
     height: 90%;
     width: 8%;
-    background-color: #d59024;
+    /*background-color: #d59024;*/
     border: 1px solid black;
 
 }
