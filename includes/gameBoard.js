@@ -401,7 +401,35 @@ class GameBoard {
             }
         }
     }
+    createGameEndScreen(playerWon){
+        var blackScreenDiv = $("<div>").addClass("blackScreen");
+        $(".container").prepend(blackScreenDiv);
 
+        var WinDiv = $("<div>").addClass("win");
+        WinDiv.text("winner winner waffle dinner")
+
+        var playerWon =  $("<h1>").addClass("playerWon");
+        playerWon.text(playerWon + " Won!")
+        WinDiv.append(playerWon);
+
+        var WinImg = $("<img>").addClass("winImg");
+        WinDiv.append(WinImg);
+
+        blackScreenDiv.append(WinDiv);
+
+        var buttonDiv = $("<div>").addClass("restart");
+        buttonDiv.text("more waffles");
+
+        WinDiv.append(buttonDiv);
+        buttonDiv.on("click", this.restartGame.bind(this));
+    }
+    restartGame(){
+        this.closeWinScreen();
+        // restart and player select
+    }
+    closeWinScreen(){
+        $("div").remove(".blackScreen");
+    }
     /*
     flipPieces() {
         var square = $(divClicked.target);
