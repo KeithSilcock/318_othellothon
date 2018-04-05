@@ -137,6 +137,8 @@ body {
     height: 80%;
     width: 25%;
     left:10%;
+    border: 5px solid grey;
+    box-sizing: border-box;
     background-color: #ffca38;
 }
 
@@ -145,6 +147,8 @@ body {
     width: 50%;
     position: absolute;
     background-color: white;
+    border: 5px solid grey;
+    border-radius: 5px;
     left: 50%;
     top: 10%;
     transform: translate(-50%, -50%);
@@ -156,6 +160,8 @@ body {
     width: 50%;
     position: absolute;
     background-color: white;
+    border: 5px solid grey;
+    border-radius: 5px;
     left: 50%;
     top: 30%;
     transform: translate(-50%, -50%);
@@ -166,6 +172,8 @@ body {
     width: 70%;
     position: absolute;
     background-color: white;
+    border-radius: 5px;
+    border: 5px solid grey;
     left: 50%;
     top: 70%;
     transform: translate(-50%, -50%);
@@ -233,6 +241,7 @@ body {
     left: 50%;
 }
 .colorChoice{
+    border-radius: 5px;
     position: relative;
     display: inline-block;
     box-sizing: border-box;
@@ -269,6 +278,7 @@ body {
     src: url(./fonts/ihop.ttf);
 }
 .resetButton{
+    border-radius: 3px;
     position: absolute;
     top:90%;
     left: 50%;
