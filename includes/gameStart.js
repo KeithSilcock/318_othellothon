@@ -66,7 +66,6 @@ class GameStartView{
         this.spawnStartPieces();
     }
     spawnStartPieces(){
-        debugger;
         var position33 = $("div[coord= '33']");
         var position34 = $("div[coord= '34']");
         var position43 = $("div[coord= '43']");

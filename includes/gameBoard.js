@@ -6,15 +6,15 @@ class GameBoard {
         this.placedPiece=null;
         this.player1=p1; // needs end game on timer
         this.player2=p2;
-
+        this.lastSquareCoords= null;
         this.currentPlayer=this.player1;
 
         this.twoDimensionArray = [
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0],
+            [0,0,0,"1","2",0,0,0],
+            [0,0,0,"2","1",0,0,0],
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0]
@@ -58,14 +58,17 @@ class GameBoard {
 
     clickedBoard(divClicked) {
         var square = $(divClicked.target);
-        var squareCoords = square.attr('coord');
+        this.lastSquareCoords = square.attr('coord');
 
         //check if empty and is a square
-        if(this.getPlayerNumberFromArray(squareCoords)===0 && square.hasClass('square')) {
+        if(this.getPlayerNumberFromArray(this.lastSquareCoords)===0 && square.hasClass('square')) {
             this.currentPlayer.stopTimer();
 
             this.spawnPiece(divClicked);
-            this.updateStorageArray(squareCoords);
+            this.updateStorageArray(this.lastSquareCoords);
+            debugger;
+            this.checkEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
+
 
             // this.updateScoreBoard();
 
@@ -112,25 +115,29 @@ class GameBoard {
         }
     }
 
-    checkEast(arrayForCheck,currentPlayer,opponent,yDirection,xDirection) {
-        var currentNum = currentPlayer;
-        var opponentNum = opponent;
+    checkEast(arrayForCheck,currentPlayer,yDirection,xDirection) {
+        var currentNum = currentPlayer.num;
         var piecesToFlip = [];
-        var currentY = yDirection;
-        var currentX = xDirection;
-        for(var rowIndex = x; rowIndex < size; rowIndex++){
-            if(arrayForCheck[y][rowIndex] === 0) {
+        var currentY = parseInt(yDirection);
+        var currentX = parseInt(xDirection);
+        for(var rowIndex = currentX+1; rowIndex < this.size; rowIndex++){
+            if(arrayForCheck[currentY][rowIndex] === 0) {
                 console.log("empty on east");
+                return;
             }else{
-                if (arrayForCheck[y][rowIndex] === currentNum) {
+                if (arrayForCheck[currentY][rowIndex] === currentNum) {
                     if (piecesToFlip.length !== 0) {
+                        console.log("flip this shit")
                         //call flipColor Function
                         //flip color on the board and numbers in the twoDimensionArray
+                        return;
                     } else {
                         console.log("Nothing to Flip");
+                        return;
                     }
                 } else {
-                    piecesToFlip.push({yCord:y, xCord:rowIndex})
+                    piecesToFlip.push({yCord:currentY, xCord:rowIndex})
+                    console.log("push piece")
                 }
             }
         }
@@ -145,9 +152,7 @@ class GameBoard {
         this.placedPiece = newPiece.changeColor(this.currentPlayer.color);
 
         divClicked.target.append(this.placedPiece[0])
-
     }
-
     checkWest({y:yDirection,x:xDirection}) {
 
 
