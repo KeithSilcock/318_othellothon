@@ -89,6 +89,7 @@ body {
     width: 100%;
 }
 
+/* player stats */
 .playerContainer {
     vertical-align: top;
     position: relative;
@@ -96,6 +97,10 @@ body {
     height: 80%;
     width: 25%;
     background-color: powderblue;
+}
+
+.playerName {
+    position: absolute;
 }
 
 .piece{
