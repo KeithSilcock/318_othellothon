@@ -66,6 +66,7 @@ class GameBoard {
             this.spawnPiece(divClicked);
             this.updateStorageArray(this.lastSquareCoords);
 
+            debugger
             this.callChecks();
 
 
@@ -142,12 +143,15 @@ class GameBoard {
 
             var pieceToFlip = $(`.piece[coord= '${y}${x}']`);
             this.changeColor(pieceToFlip)
+
+            this.updateStorageArray(''+y+x)
         }
     }
     changeColor(domToChange){
         domToChange.css({
             'background-color': this.currentPlayer.color,
         });
+        domToChange.attr('player', this.currentPlayer.num)
     }
 
     checkEast(arrayForCheck,currentPlayer,yDirection,xDirection) {
@@ -215,11 +219,11 @@ class GameBoard {
         var currentY = parseInt(yDirection);
         var currentX = parseInt(xDirection);
         for(var columnIndex = currentY-1; columnIndex >= 0; columnIndex--){
-            if(arrayForCheck[currentX][columnIndex] === 0) {
+            if(arrayForCheck[columnIndex][currentX] === 0) {
                 console.log("empty on North");
                 return;
             }else{
-                if (arrayForCheck[currentX][columnIndex] === currentNum) {
+                if (arrayForCheck[columnIndex][currentX] === currentNum) {
                     if (piecesToFlip.length !== 0) {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
@@ -243,11 +247,11 @@ class GameBoard {
         var currentY = parseInt(yDirection);
         var currentX = parseInt(xDirection);
         for(var columnIndex = currentY+1; columnIndex < this.size; columnIndex++){
-            if(arrayForCheck[currentX][columnIndex] === 0) {
+            if(arrayForCheck[columnIndex][currentX] === 0) {
                 console.log("empty on South");
                 return;
             }else{
-                if (arrayForCheck[currentX][columnIndex] === currentNum) {
+                if (arrayForCheck[columnIndex][currentX] === currentNum) {
                     if (piecesToFlip.length !== 0) {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
