@@ -34,7 +34,7 @@ class GameBoard {
                     squareMaker.addClass("light");
                     squareMaker.attr({
                         'coord': ""+rowIndex+squareIndex
-                        });
+                    });
 
                 } else if (rowIndex % 2 === 0 && squareIndex % 2 === 1 || rowIndex % 2 === 1 && squareIndex % 2 === 0) {
                     squareMaker.addClass("dark");
@@ -61,19 +61,20 @@ class GameBoard {
 
         //check if empty and is a square
         if(this.getPlayerNumberFromArray(this.lastSquareCoords)===0 && square.hasClass('square')) {
-            this.currentPlayer.stopTimer();
 
-            this.spawnPiece(divClicked);
-            this.updateStorageArray(this.lastSquareCoords);
+            var allowed = this.callChecks();
+            if(allowed) {
+                this.currentPlayer.stopTimer();
 
-            debugger
-            this.callChecks();
+                this.spawnPiece(divClicked);
+                this.updateStorageArray(this.lastSquareCoords);
 
 
-            // this.updatePlayerScore();
+                // this.updatePlayerScore();
 
-            this.switchPlayer();
-            this.currentPlayer.startTimer();
+                this.switchPlayer();
+                this.currentPlayer.startTimer();
+            }
         }
 
     }
@@ -102,6 +103,9 @@ class GameBoard {
     }
 
     getPlayerNumberFromArray(coords){
+        if(!coords){
+            return;
+        }
         return this.twoDimensionArray[coords[0]][coords[1]];
     }
 
@@ -123,15 +127,24 @@ class GameBoard {
     }
 
     callChecks(){
-        this.checkNorth(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
-        this.checkEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
-        this.checkSouth(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
-        this.checkWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
-        this.checkNorthEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
-        this.checkNorthWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
-        this.checkSouthEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
-        this.checkSouthWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]);
-
+        var arrayOfLegalMoves=[
+            this.checkNorth(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]),
+            this.checkEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]),
+            this.checkSouth(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]),
+            this.checkWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]),
+            this.checkNorthEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]),
+            this.checkNorthWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]),
+            this.checkSouthEast(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]),
+            this.checkSouthWest(this.twoDimensionArray, this.currentPlayer, this.lastSquareCoords[0], this.lastSquareCoords[1]),
+        ];
+        for(var index=0; index<arrayOfLegalMoves.length; index++){
+            if(arrayOfLegalMoves[index]){
+                return true;
+            }else{
+                continue
+            }
+        }
+        return false;
     }
 
     flipPiecesInArray(arrayOfCoords){
@@ -172,7 +185,7 @@ class GameBoard {
                         this.flipPiecesInArray(piecesToFlip)
 
                         //flip color on the board and numbers in the twoDimensionArray
-                        return;
+                        return true;
                     } else {
                         console.log("Nothing to Flip");
                         return;
@@ -200,7 +213,7 @@ class GameBoard {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
-                        return;
+                        return true;
                     } else {
                         console.log("Nothing to Flip");
                         return;
@@ -228,7 +241,7 @@ class GameBoard {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
-                        return;
+                        return true;
                     } else {
                         console.log("Nothing to Flip");
                         return;
@@ -256,7 +269,7 @@ class GameBoard {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
-                        return;
+                        return true;
                     } else {
                         console.log("Nothing to Flip");
                         return;
@@ -284,7 +297,7 @@ class GameBoard {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
-                        return;
+                        return true;
                     } else {
                         console.log("Nothing to Flip");
                         return;
@@ -312,7 +325,7 @@ class GameBoard {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
-                        return;
+                        return true;
                     } else {
                         console.log("Nothing to Flip");
                         return;
@@ -340,7 +353,7 @@ class GameBoard {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
-                        return;
+                        return true;
                     } else {
                         console.log("Nothing to Flip");
                         return;
@@ -368,7 +381,7 @@ class GameBoard {
                         console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
-                        return;
+                        return true;
                     } else {
                         console.log("Nothing to Flip");
                         return;
