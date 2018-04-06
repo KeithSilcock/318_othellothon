@@ -7,12 +7,8 @@ class Piece{
         this.pourRate=10;
         this.pourIntervalTimer=null;
 
-        // return this.renderPiece();
     }
     renderPiece(squareClicked){
-        //var squareClicked = $(divClicked.target)
-
-
         this.pieceDOM = $("<div>",{
             'class':'piece',
             'coord': squareClicked.attr('coord'),
