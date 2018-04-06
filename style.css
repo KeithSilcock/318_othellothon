@@ -215,39 +215,45 @@ body {
     position: relative;
 }
 
-
+.colorPickerText{
+    font-size: 2em;
+}
 .p1Start, .p2Start{
     position: absolute;
+    text-align: center;
     font-family: 'Fredoka One';
+
 }
 .p1Start{
-    left:13%;
-    top: 20%;
+    left:5%;
+    top: 12%;
 }
 .p2Start{
     left:55%;
-    top: 20%;
+    top: 12%;
+}
+.p1colorContainer, .p2colorContainer{
+    position: absolute;
+    width: 40%;
+    height: 13%;
+    top: 40%;
 }
 .p1colorContainer{
-    position: absolute;
-    width: 40%;
-    height: 10%;
-    top: 40%;
-    left: 7%;
+    left: 5.5%;
 }
 .p2colorContainer{
-    position: absolute;
-    width: 40%;
-    height: 10%;
-    top: 40%;
-    left: 50%;
+    left: 56%;
 }
 .colorChoice{
+    vertical-align: middle;
+    text-align: center;
+    line-height: 3.5rem;
+
     border-radius: 5px;
     position: relative;
     display: inline-block;
     box-sizing: border-box;
-    width: 20%;
+    width: 24%;
     height: 100%;
 }
 .colorChoice:hover{
@@ -263,10 +269,10 @@ body {
     background-color: mediumpurple;
 }
 .color3{
-    background-color: red;
+    background-color: indianred;
 }
 .color4{
-    background-color: green;
+    background-color: darkred;
 }
 .submitCharacters{
     font-family: 'Fredoka One';

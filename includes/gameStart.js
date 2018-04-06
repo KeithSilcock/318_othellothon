@@ -24,10 +24,16 @@ class GameStartView {
         $(".container").prepend(blackScreenDiv);
         var ruleDiv = $("<div>").addClass("rules");
 
-        ruleDiv.text("rule:")
+        ruleDiv.text("Rules:")
         var ruleP = $("<p>", {
             'class': 'rulesParagraph',
-            'text': 'The goal is to get the majority of colour discs on the board at the end of the game.',
+            'text': 'The aim of the game is to cover more of the waffle in your flavor of syrup than your opponent. \n' +
+            'The game is over when neither player can add more syrup or the timer has run out. \n' +
+            'Usually, this means the board is full or you took too long.\n' +
+            'Your move consists of placing one drop of syrup on an empty square.\n' +
+            'You can capture vertical, horizontal, and diagonal waffle rows. Also, you can capture more than one row at once\n' +
+            'A clock is used to limit the length of your game. These clocks count the time that each player separately takes for making his or her own moves.\n' +
+            'The rules are very simple, if you run out of time, you lose the game, and thus must budget your time and your syrup output.',
         });
         ruleDiv.append(ruleP);
 
