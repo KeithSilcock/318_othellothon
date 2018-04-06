@@ -494,6 +494,9 @@ class GameBoard {
         if (this.currentPlayer.num === '1') {
             $('.playerName.p1').css({'box-shadow': '0px 0px 60px 30px rgba(255,143,5,1)'});
             $('.playerName.p2').css({'box-shadow': 'none'});
+
+            $('')
+
         } else {
             $('.playerName.p1').css({'box-shadow': 'none'});
             $('.playerName.p2').css({'box-shadow':  '0px 0px 60px 30px rgba(255,143,5,1)'});

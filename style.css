@@ -216,7 +216,7 @@ body {
 }
 
 .colorPickerText{
-    font-size: 2em;
+    font-size: 1.5em;
 }
 .p1Start, .p2Start{
     position: absolute;
@@ -255,6 +255,9 @@ body {
     box-sizing: border-box;
     width: 24%;
     height: 100%;
+
+    font-family: 'Fredoka One';
+
 }
 .colorChoice:hover{
     border: 2px solid black;
