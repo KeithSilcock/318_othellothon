@@ -86,7 +86,6 @@ class GameBoard {
         buttonDiv.on("click", this.restartGame.bind(this));
     }
     loseGameFunction(winner){
-        console.log('lost')
         this.reset();
         var winPlayer=winner;
         this.createGameEndScreen(winPlayer);
@@ -139,7 +138,7 @@ class GameBoard {
                         'coord': ""+rowIndex+squareIndex
                     });
                 } else {
-                    console.log("GameBoard error");
+                    // console.log("GameBoard error");
                 }
                 rowMaker.append(squareMaker);
                 fakeRow.append(fakesquare);
@@ -224,7 +223,6 @@ class GameBoard {
     }
 
     updateStorageArray(coords){
-        console.log(this.twoDimensionArray)
         this.twoDimensionArray[coords[0]][coords[1]] = this.currentPlayer.getPlayerNum();
     }
 
@@ -304,12 +302,10 @@ class GameBoard {
         var currentX = parseInt(xDirection);
         for(var rowIndex = currentX+1; rowIndex < this.size; rowIndex++){
             if(arrayForCheck[currentY][rowIndex] === 0) {
-                console.log("empty on east");
                 return;
             }else{
                 if (arrayForCheck[currentY][rowIndex] === currentNum) {
                     if (piecesToFlip.length !== 0) {
-                        console.log("flip this shit")
 
                         //call flipColor Function
                         this.flipPiecesInArray(piecesToFlip)
@@ -317,12 +313,10 @@ class GameBoard {
                         //flip color on the board and numbers in the twoDimensionArray
                         return true;
                     } else {
-                        console.log("Nothing to Flip");
                         return;
                     }
                 } else {
                     piecesToFlip.push({yCord:currentY, xCord:rowIndex})
-                    console.log("push piece")
                 }
             }
         }
@@ -335,22 +329,18 @@ class GameBoard {
         var currentX = parseInt(xDirection);
         for(var rowIndex = currentX-1; rowIndex >= 0; rowIndex--){
             if(arrayForCheck[currentY][rowIndex] === 0) {
-                console.log("empty on west");
                 return;
             }else{
                 if (arrayForCheck[currentY][rowIndex] === currentNum) {
                     if (piecesToFlip.length !== 0) {
-                        console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
                         return true;
                     } else {
-                        console.log("Nothing to Flip");
                         return;
                     }
                 } else {
                     piecesToFlip.push({yCord:currentY, xCord:rowIndex})
-                    console.log("push piece")
                 }
             }
         }
@@ -363,22 +353,18 @@ class GameBoard {
         var currentX = parseInt(xDirection);
         for(var columnIndex = currentY-1; columnIndex >= 0; columnIndex--){
             if(arrayForCheck[columnIndex][currentX] === 0) {
-                console.log("empty on North");
                 return;
             }else{
                 if (arrayForCheck[columnIndex][currentX] === currentNum) {
                     if (piecesToFlip.length !== 0) {
-                        console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
                         return true;
                     } else {
-                        console.log("Nothing to Flip");
                         return;
                     }
                 } else {
-                    piecesToFlip.push({yCord:columnIndex, xCord:currentX})
-                    console.log("push piece")
+                    piecesToFlip.push({yCord:columnIndex, xCord:currentX});
                 }
             }
         }
@@ -391,22 +377,18 @@ class GameBoard {
         var currentX = parseInt(xDirection);
         for(var columnIndex = currentY+1; columnIndex < this.size; columnIndex++){
             if(arrayForCheck[columnIndex][currentX] === 0) {
-                console.log("empty on South");
                 return;
             }else{
                 if (arrayForCheck[columnIndex][currentX] === currentNum) {
                     if (piecesToFlip.length !== 0) {
-                        console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
                         return true;
                     } else {
-                        console.log("Nothing to Flip");
                         return;
                     }
                 } else {
-                    piecesToFlip.push({yCord:columnIndex, xCord:currentX})
-                    console.log("push piece")
+                    piecesToFlip.push({yCord:columnIndex, xCord:currentX});
                 }
             }
         }
@@ -419,22 +401,18 @@ class GameBoard {
         var currentX = parseInt(xDirection);
         for(var rowIndex = currentX+1, columnIndex = currentY-1; rowIndex < this.size && columnIndex >=0; rowIndex++, columnIndex--){
             if(arrayForCheck[columnIndex][rowIndex] === 0) {
-                console.log("empty on northeast");
                 return;
             }else{
                 if (arrayForCheck[columnIndex][rowIndex] === currentNum) {
                     if (piecesToFlip.length !== 0) {
-                        console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
                         return true;
                     } else {
-                        console.log("Nothing to Flip");
                         return;
                     }
                 } else {
                     piecesToFlip.push({yCord:columnIndex, xCord:rowIndex})
-                    console.log("push piece")
                 }
             }
         }
@@ -447,22 +425,18 @@ class GameBoard {
         var currentX = parseInt(xDirection);
         for(var rowIndex = currentX-1, columnIndex = currentY-1; rowIndex >=0 && columnIndex >=0; rowIndex--, columnIndex--){
             if(arrayForCheck[columnIndex][rowIndex] === 0) {
-                console.log("empty on northwest");
                 return;
             }else{
                 if (arrayForCheck[columnIndex][rowIndex] === currentNum) {
                     if (piecesToFlip.length !== 0) {
-                        console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
                         return true;
                     } else {
-                        console.log("Nothing to Flip");
                         return;
                     }
                 } else {
-                    piecesToFlip.push({yCord:columnIndex, xCord:rowIndex})
-                    console.log("push piece")
+                    piecesToFlip.push({yCord:columnIndex, xCord:rowIndex});
                 }
             }
         }
@@ -475,22 +449,18 @@ class GameBoard {
         var currentX = parseInt(xDirection);
         for(var rowIndex = currentX+1, columnIndex = currentY+1; rowIndex < this.size && columnIndex < this.size; rowIndex++, columnIndex++){
             if(arrayForCheck[columnIndex][rowIndex] === 0) {
-                console.log("empty on southeast");
                 return;
             }else{
                 if (arrayForCheck[columnIndex][rowIndex] === currentNum) {
                     if (piecesToFlip.length !== 0) {
-                        console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
                         return true;
                     } else {
-                        console.log("Nothing to Flip");
                         return;
                     }
                 } else {
                     piecesToFlip.push({yCord:columnIndex, xCord:rowIndex})
-                    console.log("push piece")
                 }
             }
         }
@@ -503,22 +473,18 @@ class GameBoard {
         var currentX = parseInt(xDirection);
         for(var rowIndex = currentX-1, columnIndex = currentY+1; rowIndex >=0 && columnIndex < this.size; rowIndex--, columnIndex++){
             if(arrayForCheck[columnIndex][rowIndex] === 0) {
-                console.log("empty on southwest");
                 return;
             }else{
                 if (arrayForCheck[columnIndex][rowIndex] === currentNum) {
                     if (piecesToFlip.length !== 0) {
-                        console.log("flip this shit")
                         this.flipPiecesInArray(piecesToFlip);
                         //flip color on the board and numbers in the twoDimensionArray
                         return true;
                     } else {
-                        console.log("Nothing to Flip");
                         return;
                     }
                 } else {
                     piecesToFlip.push({yCord:columnIndex, xCord:rowIndex})
-                    console.log("push piece")
                 }
             }
         }
