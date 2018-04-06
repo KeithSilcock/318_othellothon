@@ -15,7 +15,6 @@ body {
     height: 500px;
     width: 500px;
     margin: auto;
-    /*background-image: url("./includes/images/homemade_waffle.png");*/
     background-color: #f9e594;
     border-radius: 30px;
     padding: 1% 1%;
@@ -50,7 +49,6 @@ body {
     height: 90%;
     width: 8%;
     background-color: #d59024;
-    /*border: 1px solid black;*/
 }
 .square{
     display: inline-flex;
@@ -58,9 +56,6 @@ body {
     margin: auto;
     height: 90%;
     width: 8%;
-    /*background-color: #d59024;*/
-    /*border: 1px solid black;*/
-
 }
 .blackScreen{
     position:absolute;
@@ -72,6 +67,7 @@ body {
     box-sizing: border-box;
 }
 .rules, .win, .lose{
+    font-family: 'Fredoka One';
     background-color: whitesmoke;
     border-radius: 30px;
     height:80%;
@@ -81,15 +77,21 @@ body {
     vertical-align: center;
     text-align: center;
 }
+.rulesParagraph{
+    font-family: 'Fredoka One';
+
+}
 .playerWon, .playerLost{
     font-family: "ihop";
     font-size: 5vh;
 }
-.winImg, .loseImge{
+.winImg, .loseImg{
 
 }
 
 .startButton, .restart{
+    color: white;
+    font-family: 'Fredoka One';
     background-color: cornflowerblue;
     height:10%;
     width:10%;
@@ -152,7 +154,10 @@ body {
     left: 50%;
     top: 10%;
     transform: translate(-50%, -50%);
+    font-family: 'Fredoka One';
     text-align: center;
+    box-sizing: border-box;
+    padding: 2%;
 }
 
 .playerImg {
@@ -177,6 +182,7 @@ body {
     left: 50%;
     top: 70%;
     transform: translate(-50%, -50%);
+    font-family: 'Fredoka One';
     font-size: 2rem;
     text-align: center;
 }
@@ -189,7 +195,7 @@ body {
     position: absolute;
     background-color: black;
     left: 33%;
-    top: 29%;
+    top: 26%;
     transform: translate(-50%, -50%);
 }
 
@@ -200,23 +206,19 @@ body {
     position: absolute;
     background-color: black;
     left: 33%;
-    top: 29%;
+    top: 26%;
     transform: translate(-50%, -50%);
 }
 
 
 .piece{
     position: relative;
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*border-radius: 50%;*/
-
-    /*filter: url(#goo);*/
 }
 
 
 .p1Start, .p2Start{
     position: absolute;
+    font-family: 'Fredoka One';
 }
 .p1Start{
     left:13%;
@@ -267,6 +269,7 @@ body {
     background-color: green;
 }
 .submitCharacters{
+    font-family: 'Fredoka One';
     position: absolute;
     top: 80%;
     left: 50%;
@@ -283,4 +286,6 @@ body {
     top:90%;
     left: 50%;
     transform: translate(-50%,0);
+    font-family: 'Fredoka One';
+
 }
