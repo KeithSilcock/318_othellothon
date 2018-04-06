@@ -30,7 +30,6 @@ body {
     height: 500px;
     width: 500px;
     margin: auto;
-    /*background-color: #f9e594;*/
     border-radius: 30px;
     padding: 1% 1%;
     box-sizing: border-box;
@@ -38,8 +37,6 @@ body {
     filter: url(#goo);
 
     cursor: url("includes/images/syrupCaraffe.png"), auto;
-
-    /*left:10%;*/
 }
 .row, .fakeRow{
     display: flex;

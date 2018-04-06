@@ -27,7 +27,6 @@ class Piece{
         });
 
         //Start pour mechanics
-        console.log('starting to pour')
         this.currentPiece = this.pieceDOM[0];
         this.currentPiece.currentHeight = 5;
         this.currentPiece.currentWidth =  5;
@@ -56,11 +55,9 @@ class Piece{
         if(this.currentPiece.currentHeight>=90){
             this.stopPouring();
         }
-        console.log('pouring')
     }
 
     stopPouring(){
-        console.log("stopped pouring");
         clearInterval(this.pourIntervalTimer);
         this.pourIntervalTimer=null;
     }

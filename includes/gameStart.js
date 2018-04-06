@@ -99,31 +99,14 @@ class GameStartView {
         this.closePlayerSelect();
 
     }
-// getPlayers(){
-//     var player1 = new Player(this.player1Name, this.player1Color, null, '1')
-//     var player2 = new Player(this.player2Name, this.player2Color, null, '2')
-//     return [player1, player2]
-// }
 }
 
 class GameStartController{
     constructor(){
         this.view = new GameStartView(this.getPlayerObj);
     }
-
     getPlayerObj(p1, p2){
-        // console.log(p1, p2);
-        // var newGame = new GameBoard(8, p1, p2);
-
-        // var player1 = new Player('Harrison', 'blue', null, '1');
-        // var player2 = new Player('Dona', 'red', null, '2');
-
-        //var player1 = new Player('harrison', 'blue', null, '1');
-        //var player2 = new Player('dona', 'red', null, '2');
-
-
         var newGame = new GameBoard(8, p1, p2);
-
     }
 }
 

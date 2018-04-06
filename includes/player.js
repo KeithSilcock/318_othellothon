@@ -35,7 +35,6 @@ class Player {
     countDown(){
         this.displayPlayerStats();
         if(--this.currentTime >= 0){
-            console.log(this.currentTime)
         }else{
             //time ran out
             this.loseFunction(this.name)
