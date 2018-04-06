@@ -95,12 +95,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
     <defs>
         <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blurredBlobs" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blurredBlobs" />
             <feColorMatrix in="blurredBlobs" mode="matrix" values="1 0 0 0 0
               0 1 0 0 0
               0 0 1 0 0
-              0 0 0 5 -.5" result="contrastedBlobs" />
+              0 0 0 5 -.6" result="contrastedBlobs" />
             <feComposite in="SourceGraphic" in2="contrastedBlobs" operator="atop"/>
+            <!--<feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blurredBlobs" />-->
+            <!--<feColorMatrix in="blurredBlobs" mode="matrix" values="1 0 0 0 0-->
+              <!--0 1 0 0 0-->
+              <!--0 0 1 0 0-->
+              <!--0 0 0 5 -.5" result="contrastedBlobs" />-->
+            <!--<feComposite in="SourceGraphic" in2="contrastedBlobs" operator="atop"/>-->
         </filter>
     </defs>
 </svg>

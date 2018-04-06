@@ -53,7 +53,7 @@ class Piece{
             height: this.currentPiece.currentHeight+'%',
             width: this.currentPiece.currentWidth+'%'
         });
-        if(this.currentPiece.currentHeight>=100){
+        if(this.currentPiece.currentHeight>=90){
             this.stopPouring();
         }
         console.log('pouring')
