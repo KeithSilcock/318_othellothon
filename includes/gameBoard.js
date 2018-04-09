@@ -6,7 +6,7 @@ class GameBoard {
         this.placedPiece=null;
         this.player1=p1; // needs end game on timer
         this.player2=p2;
-        this.lastSquareCoords= null;
+        this.lastSquareCoords= 0;
         this.currentPlayer=this.player1;
         this.otherPlayer=this.player2;
 
@@ -31,6 +31,9 @@ class GameBoard {
         this.notifyPlayerTurn();
         this.spawnStartPieces();
         this.updatePlayerScore();
+
+
+        this.gameBoard.css('cursor', `url("${this.currentPlayer.cursor}"),auto`)
     }
 
     spawnStartPieces() {
@@ -62,16 +65,16 @@ class GameBoard {
         position43.append(placedPieceforC43);
     }
 
-    createGameEndScreen(playerWhoWon) {
-        playerWhoWon=playerWhoWon.toLowerCase();
+    createGameEndScreen(player) {
+        var winnerName=player.name.toLowerCase();
         var blackScreenDiv = $("<div>").addClass("blackScreen");
         $(".container").prepend(blackScreenDiv);
 
         var WinDiv = $("<div>").addClass("win");
-        WinDiv.text("winner winner waffle dinner")
+        WinDiv.text("Winner winner waffle dinner").css('font-size','3.0em')
 
         var playerWon = $("<h1>").addClass("playerWon");
-        playerWon.text(playerWhoWon + " won!")
+        playerWon.text(winnerName + " wins!").css("color", player.color)
         WinDiv.append(playerWon);
 
         var WinImg = $("<img>").addClass("winImg");
@@ -80,14 +83,18 @@ class GameBoard {
         blackScreenDiv.append(WinDiv);
 
         var buttonDiv = $("<div>").addClass("restart");
-        buttonDiv.text("more waffles");
+        buttonDiv.text("Make us more waffles!");
 
         WinDiv.append(buttonDiv);
         buttonDiv.on("click", this.restartGame.bind(this));
     }
     loseGameFunction(winner){
+        if(winner===this.player1){
+            var winPlayer=this.player2;
+        }else{
+            var winPlayer=this.player1;
+        }
         this.reset();
-        var winPlayer=winner;
         this.createGameEndScreen(winPlayer);
     }
     restartGame(){
@@ -204,10 +211,10 @@ class GameBoard {
         var player1MovesLeft=(this.size*this.size)-(count1+count2);
         var player2MovesLeft=(this.size*this.size)-(count1+count2);
         if(player1MovesLeft===0){
-            this.createGameEndScreen(this.player1.name);
+            this.createGameEndScreen(this.player1);
             return;
         }else if(player2MovesLeft===0){
-            this.createGameEndScreen(this.player2.name);
+            this.createGameEndScreen(this.player2);
             return
         }
 
@@ -241,6 +248,8 @@ class GameBoard {
             this.currentPlayer = this.player1;
             this.otherPlayer=this.player2;
         }
+
+        this.gameBoard.css('cursor', `url("${this.currentPlayer.cursor}"),auto`)
         this.notifyPlayerTurn();
     }
     spawnPiece(divClicked) {
@@ -492,14 +501,16 @@ class GameBoard {
 
     notifyPlayerTurn(){
         if (this.currentPlayer.num === '1') {
-            $('.playerName.p1').css({'box-shadow': '0px 0px 60px 30px rgba(255,143,5,1)'});
+            // $('.playerName.p1').css({'box-shadow': '0px 0px 60px 30px rgba(255,143,5,1)'});
+            $('.playerName.p1').css({'box-shadow': '0px 0px 60px 30px rgba(255,255,255,1)'});
             $('.playerName.p2').css({'box-shadow': 'none'});
 
             $('')
 
         } else {
             $('.playerName.p1').css({'box-shadow': 'none'});
-            $('.playerName.p2').css({'box-shadow':  '0px 0px 60px 30px rgba(255,143,5,1)'});
+            // $('.playerName.p2').css({'box-shadow':  '0px 0px 60px 30px rgba(255,143,5,1)'});
+            $('.playerName.p2').css({'box-shadow': '0px 0px 60px 30px rgba(255,255,255,1)'});
         }
     }
 }

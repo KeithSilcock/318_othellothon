@@ -20,47 +20,81 @@ class GameStartView {
     }
 
     createStartScreen() {
+        var colorArray=['#009fd7', 'mediumpurple', 'indianred', 'darkred'];
         var blackScreenDiv = $("<div>").addClass("blackScreen");
         $(".container").prepend(blackScreenDiv);
         var ruleDiv = $("<div>").addClass("rules");
 
         ruleDiv.text("Rules:")
+
+        var textArray = ['The game is over when neither player can add more syrup or the timer has run out.',
+            'Usually, this means the board is full or you took too long.',
+            'Your move consists of placing one drop of syrup on an empty square.',
+            'You can capture vertical, horizontal, and diagonal waffle rows. Also, you can capture more than one row at once',
+            'A clock is used to limit the length of your game. These clocks count the time that each player separately takes for making his or her own moves.',
+            'The rules are very simple, if you run out of time, you lose the game, and thus must budget your time and your syrup output.']
+
         var ruleP = $("<p>", {
             'class': 'rulesParagraph',
-            'text': 'The aim of the game is to cover more of the waffle in your flavor of syrup than your opponent. \n' +
-            'The game is over when neither player can add more syrup or the timer has run out. \n' +
-            'Usually, this means the board is full or you took too long.\n' +
-            'Your move consists of placing one drop of syrup on an empty square.\n' +
-            'You can capture vertical, horizontal, and diagonal waffle rows. Also, you can capture more than one row at once\n' +
-            'A clock is used to limit the length of your game. These clocks count the time that each player separately takes for making his or her own moves.\n' +
-            'The rules are very simple, if you run out of time, you lose the game, and thus must budget your time and your syrup output.',
+            'text':'The aim of the game is to cover more of the waffle in your favorite flavor of syrup than your opponent.',
+            css:{
+                'font-size':'2.5em',
+            },
         });
-        ruleDiv.append(ruleP);
+
+        var ruleUl = $("<ul>",{
+            css:{
+                "list-style-position": 'inside',
+                'line-height':'2.5em',
+            },
+        });
+        for(var textIndex in textArray){
+            ruleUl.append($("<li>",{
+                text: textArray[textIndex],
+                css:{
+                    'font-size':'1.4em',
+                    color: colorArray[randomNumBetween(0, colorArray.length-1)],
+                },
+            }))
+        }
+        ruleDiv.append(ruleP, ruleUl);
 
         blackScreenDiv.append(ruleDiv);
         var buttonDiv = $("<div>").addClass("startButton");
-        buttonDiv.text("Start Game");
+        buttonDiv.text("Start Game").css('font-size', '3.0em');
         ruleDiv.append(buttonDiv);
         buttonDiv.on("click", this.closeRuleScreen.bind(this));
 
         // add clicks for color divs
         $('.colorChoice').on('click', this.addColorToPlayer.bind(this));
+
+        function randomNumBetween(min, max) {
+            var num = Math.floor(Math.random()*(max-min+1)+min);
+            return num;
+        }
     }
 
     addColorToPlayer(colorDivClicked) {
         var divClicked = $(colorDivClicked.target);
         var color = divClicked.css('background-color');
         if (divClicked.hasClass('p1')) {
+            if(this.player1.getColor()) {
+                $('.colorChoice.p1').css('border','none')
+            }
+
             this.player1.setColor(color);
             $('.player1-piece').css('background-color', color);
-        }else{
 
+        }else{
+            if(this.player2.getColor()) {
+                $('.colorChoice.p2').css('border','none')
+            }
             this.player2.setColor(color);
             $('.player2-piece').css('background-color', color);
         }
 
         divClicked.css({
-            'border': '3px solid black',
+            'border': '5px solid black',
         })
     }
 

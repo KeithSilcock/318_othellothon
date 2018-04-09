@@ -9,6 +9,7 @@ body {
     width: 100vw;
     horiz-align: center;
 }
+
 .playerBox{
     position: relative;
     display: inline-block;
@@ -35,7 +36,7 @@ body {
 
     filter: url(#goo);
 
-    cursor: url("includes/images/syrupCaraffe.png"), auto;
+    /*cursor: url("includes/images/syrupCaraffe.png"), auto;*/
 }
 .row, .fakeRow{
     display: flex;
@@ -93,10 +94,12 @@ body {
     color: white;
     font-family: 'Fredoka One';
     background-color: cornflowerblue;
-    height:10%;
-    width:10%;
+    font-size:0.7em;
+    height:23%;
+    width:15%;
     z-index: +3;
     margin: auto;
+    cursor: pointer;
 }
 
 .gameStartContainer{
@@ -187,15 +190,18 @@ body {
     text-align: center;
 }
 
-
+.pieceScoreHolder{
+    position: relative;
+    height:10%;
+}
 .player1-piece {
     height: 40px;
     width: 40px;
     border-radius: 50%;
     position: absolute;
     background-color: black;
-    left: 33%;
-    top: 26%;
+    left: 35%;
+    top: 50%;
     transform: translate(-50%, -50%);
 }
 
@@ -205,8 +211,8 @@ body {
     border-radius: 50%;
     position: absolute;
     background-color: black;
-    left: 33%;
-    top: 26%;
+    left: 35%;
+    top: 50%;
     transform: translate(-50%, -50%);
 }
 
@@ -256,14 +262,16 @@ body {
     width: 24%;
     height: 100%;
 
+    cursor: pointer;
+
     font-family: 'Fredoka One';
 
 }
 .colorChoice:hover{
-    border: 2px solid black;
+    border: 5px solid black;
 }
 .colorChoice:active{
-    border: 2px solid black;
+    border: 5px solid black;
 }
 .color1{
     background-color: #009fd7;
@@ -296,5 +304,8 @@ body {
     left: 50%;
     transform: translate(-50%,0);
     font-family: 'Fredoka One';
-
+    cursor: pointer;
+}
+.playersReady{
+    cursor: pointer;
 }

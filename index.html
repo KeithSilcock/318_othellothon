@@ -63,8 +63,12 @@
         <img src="" alt="" class="playerImg p1">
         <div class="scoreBoard p1">
             <img src="" alt="" class="playerIcon p1">
-            <div class="player1-piece"></div>
-            <p class="playerScore p1"></p>
+
+            <div class="pieceScoreHolder">
+                <div class="player1-piece"></div>
+                <p class="playerScore p1"></p>
+            </div>
+
             <p class="playerPlaysLeft p1"></p>
             <p class="playerTimer p1"></p>
         </div>
@@ -80,32 +84,33 @@
         <img src="" alt="" class="playerImg p2">
         <div class="scoreBoard p2">
             <img src="" alt="" class="playerIcon p2">
-            <div class="player2-piece"></div>
-            <p class="playerScore p2"></p>
+
+            <div class="pieceScoreHolder">
+                <div class="player2-piece"></div>
+                <p class="playerScore p2"></p>
+            </div>
             <p class="playerPlaysLeft p2"></p>
             <p class="playerTimer p2"></p>
         </div>
     </div>
 
-    <button type="button" class="resetButton">Reset Game</button>
+    <button type="button" class="resetButton">Make us a new Waffle!</button>
 
 </div>
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
     <defs>
         <filter id="goo">
+            <!-- takes in source graphic, the circles, applies a blur based on how large the StdDev is, spits out "blurredBlobs-->
             <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blurredBlobs" />
+            <!-- takes in the blurred image, applies a "near" identity matrix keeping the red, blue, green channels the same while
+            applying a shift to the alpha, basically getting the images to overlap in their alphas-->
             <feColorMatrix in="blurredBlobs" mode="matrix" values="1 0 0 0 0
               0 1 0 0 0
               0 0 1 0 0
               0 0 0 5 -.6" result="contrastedBlobs" />
+            <!-- takes in the original image, and the colorized image and applies an overlapping conversion to get the colors to mix-->
             <feComposite in="SourceGraphic" in2="contrastedBlobs" operator="atop"/>
-            <!--<feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blurredBlobs" />-->
-            <!--<feColorMatrix in="blurredBlobs" mode="matrix" values="1 0 0 0 0-->
-              <!--0 1 0 0 0-->
-              <!--0 0 1 0 0-->
-              <!--0 0 0 5 -.5" result="contrastedBlobs" />-->
-            <!--<feComposite in="SourceGraphic" in2="contrastedBlobs" operator="atop"/>-->
         </filter>
     </defs>
 </svg>

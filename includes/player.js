@@ -5,9 +5,11 @@ class Player {
         this.img = img;
         this._num=num;
 
+        this._cursor=null;
+
         this._score=2;
 
-        this.maxTime=300; //5 mins
+        this.maxTime=120; //5 mins
         this.currentTime = this.maxTime;
         this.timerObj=null;
         this.restartCallback=restartGame;
@@ -65,9 +67,17 @@ class Player {
 
     setColor(color) {
         this.color = color;
+        this.cursor=color;
     }
     getColor() {
         return this.color;
+    }
+
+    get cursor(){
+        return this._cursor;
+    }
+    set cursor(imageName){
+        this._cursor="includes/images/"+imageName+'.png';
     }
 
     get num(){
